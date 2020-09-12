@@ -40,11 +40,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599899869036</updated>
-      <workItem from="1599899870269" duration="6326000" />
+      <workItem from="1599899870269" duration="6897000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="142" y="0" key="SettingsEditor" timestamp="1599912066744">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1599912066744" />
   </component>
 </project>
