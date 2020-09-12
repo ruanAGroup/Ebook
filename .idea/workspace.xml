@@ -33,6 +33,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\15502\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="" />
@@ -40,7 +43,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599899869036</updated>
-      <workItem from="1599899870269" duration="6897000" />
+      <workItem from="1599899870269" duration="7413000" />
+      <workItem from="1599913210054" duration="218000" />
+      <workItem from="1599913450863" duration="65000" />
     </task>
     <servers />
   </component>
@@ -48,9 +53,9 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="142" y="0" key="SettingsEditor" timestamp="1599912066744">
+    <state x="142" y="0" key="SettingsEditor" timestamp="1599913518016">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1599912066744" />
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1599913518016" />
   </component>
 </project>
