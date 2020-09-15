@@ -5,6 +5,11 @@ def parseString(sear_str):
     pass
 
 
+# 根据书名查找
+def searchByName(name):
+    pass
+
+
 # 按照作者查询
 def searchByAuthor(author_name):
     pass
@@ -22,6 +27,11 @@ def searchByTag(tag):
 
 # 按照书单查询
 def searchByBookList(booklist_name):
+    pass
+
+
+# 传入一个书籍ID，返回相应的Book对象
+def searchByBookID(ID):
     pass
 
 

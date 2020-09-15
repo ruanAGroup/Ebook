@@ -97,11 +97,12 @@ class Book:
 
 
 class Author:
-    def __init__(self, name, books=None):
+    def __init__(self, ID, name, books=None):
         if books is None:
             books = []
+        self.ID = ID  # 因为作者可能同名，所以要有一个关键码ID
         self.name = name
-        self.books = books
+        self.books = books  # 书籍的ID列表
 
     def addBook(self, book):
         self.books.append(book)
@@ -129,7 +130,7 @@ class BookList:
         if books is None:
             books = []
         self.name = name
-        self.books = books
+        self.books = books  # 书籍的ID列表
 
     def addBook(self, book):
         self.books.append(book)
@@ -146,5 +147,15 @@ class BookList:
 
     # 可选功能，书单分享，生成一张分享图片
     def share(self):
+        pass
+
+
+class History:
+    def __init__(self, time="", content=""):
+        self.time = time
+        self.content = content
+
+    # 添加到数据库中
+    def addToDB(self):
         pass
 

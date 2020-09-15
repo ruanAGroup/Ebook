@@ -21,3 +21,12 @@ def tagsToString(tag_list):
     tag_str -= ", "
     return tag_str
 
+
+def parseBooks(input_str):
+    return parseTags(input_str)
+
+
+def booksToString(author_list):
+    return tagsToString(author_list)
+
+
