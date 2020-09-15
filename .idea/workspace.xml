@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/sort.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +25,9 @@
   </component>
   <component name="JupyterTrust" id="40d63bdd-b258-4d02-8a7a-ee30e7bf2436" />
   <component name="ProjectId" id="1hP5QFultef2h2bz45bBOkLMRug" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="新增" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -43,7 +43,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.idesettings.emmet.xml" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -63,7 +63,9 @@
       <workItem from="1599925294859" duration="504000" />
       <workItem from="1599960724587" duration="659000" />
       <workItem from="1599997698413" duration="2127000" />
-      <workItem from="1600140622741" duration="1028000" />
+      <workItem from="1600140622741" duration="2862000" />
+      <workItem from="1600154298208" duration="58000" />
+      <workItem from="1600154480228" duration="3393000" />
     </task>
     <task id="LOCAL-00001" summary="try">
       <created>1599913602844</created>
@@ -72,7 +74,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599913602845</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="second">
+      <created>1600141842060</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600141842060</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -90,25 +99,26 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="try" />
-    <option name="LAST_COMMIT_MESSAGE" value="try" />
+    <MESSAGE value="second" />
+    <option name="LAST_COMMIT_MESSAGE" value="second" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="331" y="0" key="CommitChangelistDialog2" timestamp="1599913600736">
+    <state x="331" y="0" key="CommitChangelistDialog2" timestamp="1600141840242">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="331" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1599913600736" />
-    <state x="723" y="102" key="FileChooserDialogImpl" timestamp="1599915095801">
+    <state x="331" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1600141840242" />
+    <state x="723" y="102" key="FileChooserDialogImpl" timestamp="1600150002297">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="723" y="102" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1599915095801" />
-    <state x="142" y="0" key="SettingsEditor" timestamp="1599961372119">
+    <state x="723" y="102" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1600150002297" />
+    <state x="142" y="0" key="SettingsEditor" timestamp="1600154350505">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1599961372119" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1599913641316">
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1600154350505" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1600141845372">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1599913641316" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1600141845372" />
     <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599913567251">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

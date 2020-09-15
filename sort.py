@@ -6,7 +6,7 @@ def sortByName(books):
 
 
 # 按照出版日期排序
-def sortByData(books):
+def sortByDate(books):
     pass
 
 
