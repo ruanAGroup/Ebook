@@ -1,10 +1,14 @@
 # 此文件存储核心的类
+from database import *
+
+
 class Book:
-    def __init__(self, name="", authors=None, pub_date="", publisher="", cover_path="", isbn="", language="", file_path="", tags=None):
+    def __init__(self, ID=0, name="", authors=None, pub_date="", publisher="", cover_path="", isbn="", language="", file_path="", tags=None):
         if tags is None:
             tags = []
         if authors is None:
             authors = []
+        self.ID = ID
         self.name = name
         self.authors = authors
         self.pub_date = pub_date

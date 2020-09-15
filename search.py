@@ -1,19 +1,17 @@
 # 此文件存储搜索方法
 
 # 解析查询字符串
-# name="" ; publisher=""  其中`;`表示与
-# name="" | publisher=""  其中`|`表示或
 def parseString(sear_str):
     pass
 
 
 # 按照作者查询
-def searchByAuthor():
+def searchByAuthor(author_name):
     pass
 
 
 # 按照出版商查询
-def searchByPublisher():
+def searchByPublisher(publisher_name):
     pass
 
 
@@ -23,7 +21,7 @@ def searchByTag(tag):
 
 
 # 按照书单查询
-def searchByBookList():
+def searchByBookList(booklist_name):
     pass
 
 

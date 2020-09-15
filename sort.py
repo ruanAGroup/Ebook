@@ -20,4 +20,15 @@ def sortByPublisher(books):
     pass
 
 
+# 计算匹配度, 计算keyword和wordList里每一个单词之间的匹配度，并将匹配度数组返回
+def calcu_match(keyword, wordList):
+    pass
+
+
+# 根据匹配度排序
+def sortBtMatch(match_list):
+    pass
+
+
+
 
