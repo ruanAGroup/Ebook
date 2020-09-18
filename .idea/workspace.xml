@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/search.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +44,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="SQL Dialects" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -69,7 +67,13 @@
       <workItem from="1600140622741" duration="2862000" />
       <workItem from="1600154298208" duration="58000" />
       <workItem from="1600154480228" duration="5999000" />
-      <workItem from="1600176108927" duration="5993000" />
+      <workItem from="1600176108927" duration="7249000" />
+      <workItem from="1600184080241" duration="10000" />
+      <workItem from="1600271707540" duration="666000" />
+      <workItem from="1600340788246" duration="45000" />
+      <workItem from="1600343919199" duration="1194000" />
+      <workItem from="1600346153688" duration="7969000" />
+      <workItem from="1600358917143" duration="14297000" />
     </task>
     <task id="LOCAL-00001" summary="try">
       <created>1599913602844</created>
@@ -92,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600166938907</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="完善数据库模块，并且对其他部分进行了简单的修改和补充">
+      <created>1600182155101</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1600182155101</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,29 +123,38 @@
     <MESSAGE value="try" />
     <MESSAGE value="second" />
     <MESSAGE value="third" />
-    <option name="LAST_COMMIT_MESSAGE" value="third" />
+    <MESSAGE value="完善数据库模块，并且对其他部分进行了简单的修改和补充" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善数据库模块，并且对其他部分进行了简单的修改和补充" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="233" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600176398218">
+    <state x="109" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600411183973">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1600176398218" />
-    <state x="331" y="0" key="CommitChangelistDialog2" timestamp="1600166937187">
+    <state x="109" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1600411183973" />
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600354976979">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="331" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1600166937187" />
-    <state x="723" y="102" key="FileChooserDialogImpl" timestamp="1600150002297">
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1600354976979" />
+    <state x="331" y="0" key="CommitChangelistDialog2" timestamp="1600182153036">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="723" y="102" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1600150002297" />
-    <state x="142" y="0" key="SettingsEditor" timestamp="1600176273216">
+    <state x="331" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1600182153036" />
+    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog" timestamp="1600407482580">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1600176273216" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1600166944525">
+    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1600407482580" />
+    <state x="723" y="102" key="FileChooserDialogImpl" timestamp="1600272368329">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1600166944525" />
+    <state x="723" y="102" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1600272368329" />
+    <state x="142" y="0" key="SettingsEditor" timestamp="1600272121182">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1600272121182" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1600182160156">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1600182160156" />
     <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599913567251">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

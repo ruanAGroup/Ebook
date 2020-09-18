@@ -1,131 +1,311 @@
 # 此文件存储数据库相关方法
 import sqlite3
-from classes import *
-from basic import *
+from basic import listToString, parseRetBooks, parseRetAuthors, parseRetBooklists, parseListString
+from classes import Author, BookList, Book, History
 
 
 class DataBase:
-    def __init__(self):
-        self.conn = None
-        self.cursor = None
-        self.book_table = 'bookTable'
-        self.booklist_table = 'booklistTable'
-        self.author_table = 'authorTable'
-        self.history_table = 'historyTable'
-        self.book_table_created = False
-        self.author_table_created = False
-        self.history_table_created = False
-        self.booklist_table_created = False
-
-    def connect(self):
-        self.conn = sqlite3.connect('info.db')
-        self.cursor = self.conn.cursor()
-
-    def close(self):
-        self.conn.commit()
-        self.conn.close()
+    db_name = 'test.db'
+    book_table = 'bookTable'
+    booklist_table = 'booklistTable'
+    author_table = 'authorTable'
+    history_table = 'historyTable'
 
     # 新建书籍表, 记住建表操作只能进行一次
-    def createBookTable(self):
-        if self.book_table_created:
-            return
-        self.connect()
-        self.cursor.execute('create table %s (ID int primary key, name text, authors text, pub_date text,'
-                            ' publisher text, isbn text, language text, cover_path text, rating int,'
-                            ' file_path text, tags text, booklists text)' % self.book_table)
-        self.book_table_created = True
-        self.close()
+    @staticmethod
+    def createBookTable():
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute('create table %s (ID int primary key, name text, authors text, pub_date text,'
+                       ' publisher text, isbn text, language text, cover_path text, rating int,'
+                       ' file_path text, tags text, booklists text))' % DataBase.book_table)
+        conn.commit()
+        conn.close()
 
     # 新建书单表
-    def createBooklistTable(self):
-        if self.booklist_table_created:
-            return
-        self.connect()
-        self.cursor.execute('create table %s (name text primary key, books text)' % self.booklist_table)
-        self.booklist_table_created = True
-        self.close()
+    @staticmethod
+    def createBooklistTable():
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute('create table %s (name text primary key, books text)' % DataBase.booklist_table)
+        conn.commit()
+        conn.close()
 
     # 新建历史搜索表
-    def createHistoryTable(self):
-        if self.history_table_created:
-            return
-        self.connect()
-        self.cursor.execute('create table %s (time text primary key, content text)' % self.history_table)
-        self.history_table_created = True
-        self.close()
+    @staticmethod
+    def createHistoryTable():
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute('create table %s (time text primary key, content text)' % DataBase.history_table)
+        conn.commit()
+        conn.close()
 
     # 新建作者表
-    def createAuthorTable(self):
-        if self.author_table_created:
-            return
-        self.connect()
-        self.cursor.execute('create table %s (ID int primary key, name text, books text)' % self.author_table)
-        self.author_table_created = True
-        self.close()
+    @staticmethod
+    def createAuthorTable():
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute('create table %s (name text primary key , books text)' % DataBase.author_table)
+        conn.commit()
+        conn.close()
 
     # 获取所有书籍，返回一个Book类型的列表
-    # 每次打开应用，应该调用一下该函数，把所有书籍存储起来
-    def getAllBooks(self):
-        books = []
-        self.connect()
-        ret = self.cursor.execute('select * from %s' % self.book_table)
-        for row in ret:
-            book = Book(*row)
-            books.append(book)
-        self.close()
+    @staticmethod
+    def getAllBooks():
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        ret = cursor.execute('select * from %s' % DataBase.book_table)
+        conn.commit()
+        conn.close()
+        books = parseRetBooks(ret)
+        if not books:
+            return None
         return books
 
+    # 传入一个书籍ID，获取该书籍的INFO属性
+    @staticmethod
+    def getBookINFOByID(ID):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        ret = cursor.execute('select * from %s where ID=%s' % (DataBase.book_table, ID))
+        conn.commit()
+        conn.close()
+        books = parseRetBooks(ret)
+        if not books:
+            return None
+        return books[0].INFO
+
     # 对书籍进行模糊搜索, attr_name对应数据库表的相应属性名，value则是需要查询的值(不支持列表，只能单个查询)
-    def getBooksFuzzy(self, attr_name, value):
-        books = []
-        self.connect()
-        ret = self.cursor.execute('select * from %s where %s like "%%%s%%" ' % (self.book_table, attr_name, value))
-        for row in ret:
-            book = Book(*row)
-            books.append(book)
-        self.close()
+    @staticmethod
+    def getBooksFuzzy(attr_name, value):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        ret = cursor.execute('select * from %s where %s like "%%%s%%" ' % (DataBase.book_table, attr_name, value))
+        conn.commit()
+        conn.close()
+        books = parseRetBooks(ret)
+        if not books:
+            return None
         return books
 
     # 对书籍进行精确的搜索
-    def getBooksAccurate(self, attr_name, value):
-        books = []
-        self.connect()
-        ret = self.cursor.execute('select * from %s where %s=%s' % (self.book_table, attr_name, value))
-        for row in ret:
-            book = Book(*row)
-            books.append(book)
-        self.close()
+    @staticmethod
+    def getBooksAccurate(attr_name, value):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        ret = cursor.execute("select * from %s where %s='%s'" % (DataBase.book_table, attr_name, value))
+        conn.commit()
+        conn.close()
+        books = parseRetBooks(ret)
+        if not books:
+            return None
         return books
 
-    # 根据作者ID进行检索，返回书籍ID列表
-    def getBooksByAuthor(self, author_id):
-        self.connect()
-        ret = self.cursor.execute('select * from %s where id=%d ' % (self.book_table, author_id))
-        books = parseBooks(ret[0][2])
-        self.close()
-        return books
+    # 获取所有书单
+    @staticmethod
+    def getAllBookLists():
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        ret = cursor.execute('select * from %s' % DataBase.booklist_table)
+        conn.commit()
+        conn.close()
+        booklists = parseRetBooklists(ret)
+        if not BookList:
+            return None
+        return booklists
 
     # 根据书单名进行检索，返回书籍ID列表
-    def getBooksByList(self, list_name):
-        self.connect()
-        ret = self.cursor.execute('select * from %s where name=%s' % list_name)
-        books = parseBooks(ret[0][1])
-        self.close()
+    @staticmethod
+    def getBooksByList(list_name):
+        books = []
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        ret = cursor.execute("select * from %s where name='%s'" % (DataBase.booklist_table, list_name))
+        for row in ret:
+            ID = parseListString(row[2])
+            books.append(ID)
+        conn.commit()
+        conn.close()
         return books
 
     # 获取所有的历史记录，返回一个History列表
-    def getAllHistory(self):
+    @staticmethod
+    def getAllHistory():
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        ret = cursor.execute('select * from %s' % DataBase.history_table)
         histories = []
-        self.connect()
-        ret = self.cursor.execute('select * from %s' % self.history_table)
         for row in ret:
-            history = History(*row)
+            time = row[0]
+            content = row[1]
+            history = History(time, content)
             histories.append(history)
-        self.close()
+        conn.commit()
+        conn.close()
         return histories
 
+    # 获取所有作者
+    @staticmethod
+    def getAllAuthors():
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        ret = cursor.execute('select * from %s' % DataBase.author_table)
+        conn.commit()
+        conn.close()
+        authors = parseRetAuthors(ret)
+        if not authors:
+            return None
+        return authors
 
+    # 根据作者名进行检索，返回书籍ID列表
+    @staticmethod
+    def getBooksByAuthor(author_name):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        ret = cursor.execute("select * from %s where name='%s'" % (DataBase.author_table, author_name))
+        books = []
+        for row in ret:
+            ID = parseListString(row[2])
+            books.append(ID)
+        conn.commit()
+        conn.close()
+        if not books:
+            return None
+        return books
 
+    # 传入一个作者的name，获取相应的Author对象
+    @staticmethod
+    def getAuthorByName(name):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        ret = cursor.execute("select * from %s where name='%s'" % (DataBase.author_table, name))
+        conn.commit()
+        conn.close()
+        authors = parseRetAuthors(ret)
+        if not authors:
+            return None
+        return authors[0]
 
+    # 传入一个Book对象，添加到数据库中
+    @staticmethod
+    def addBook(book):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute("insert into %s values(%s, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s' ,'%s')" % (
+            DataBase.book_table, book.ID, book.name, listToString(book.authors), book.pub_date, book.publisher,
+            book.isbn, book.language, book.cover_path, book.rating, book.file_path, listToString(book.tags),
+            listToString(book.bookLists)))
+        conn.commit()
+        conn.close()
 
+    # 传入一个Book对象，从数据库中删除
+    @staticmethod
+    def deleteBook(book):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute('delete from %s where id=%s' % (DataBase.book_table, book.ID))
+        conn.commit()
+        conn.close()
 
+    # 传入一个Book对象，更新数据库中的数据
+    @staticmethod
+    def updateBook(book):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute("update %s set name='%s', authors='%s', pub_date='%s', publisher='%s', isbn='%s', "
+                       "language='%s', cover_path='%s', rating='%s', file_path='%s', tags='%s', booklists='%s' where "
+                       "ID=%s" % (
+                           DataBase.book_table, book.name, listToString(book.authors), book.pub_date, book.publisher,
+                           book.isbn, book.language, book.cover_path, book.rating, book.file_path,
+                           listToString(book.tags),
+                           listToString(book.bookLists), book.ID))
+        conn.commit()
+        conn.close()
+
+    # 传入一个Book对象，倘若书籍在数据库中，则返回True,否则返回False
+    @staticmethod
+    def bookInDB(book):
+        if not DataBase.getBookINFOByID(book.ID):
+            return False
+        return True
+
+    # 传入一个Author对象，倘若作者在数据库中，返回True，否则False
+    @staticmethod
+    def authorInDB(author):
+        if not DataBase.getAuthorByName(author.name):
+            return False
+        return True
+
+    @staticmethod
+    def addAuthor(author):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute("insert into %s values('%s', '%s')" % (DataBase.author_table, author.name,
+                                                              listToString(author.books)))
+        conn.commit()
+        conn.close()
+
+    @staticmethod
+    def deleteAuthor(author):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute("delete from %s where name='%s'" % (DataBase.author_table, author.name))
+        conn.commit()
+        conn.close()
+
+    @staticmethod
+    def updateAuthor(author):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute("update %s set books='%s' where name='%s'" % (DataBase.author_table, listToString(author.books),
+                                                                     author.name))
+        conn.commit()
+        conn.close()
+
+    @staticmethod
+    def addHistory(history):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute("insert into %s values('%s', '%s')" % (DataBase.history_table, history.time, history.content))
+        conn.commit()
+        conn.close()
+
+    @staticmethod
+    def deleteHistory(history):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute("delete from %s where time='%s'" % (DataBase.history_table, history.time))
+        conn.commit()
+        conn.close()
+
+    @staticmethod
+    def booklistInDB(booklist):
+        if not DataBase.getBooksByList(booklist.name):
+            return False
+        return True
+
+    @staticmethod
+    def addBooklist(booklist):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute("insert into %s values('%s', '%s')" % (DataBase.booklist_table, booklist.name,
+                                                              listToString(booklist.books)))
+        conn.commit()
+        conn.close()
+
+    @staticmethod
+    def deleteBooklist(booklist):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute("delete from %s where name='%s'" % (DataBase.booklist_table, booklist.name))
+        conn.commit()
+        conn.close()
+
+    @staticmethod
+    def updateBooklist(booklist):
+        conn = sqlite3.connect(DataBase.db_name)
+        cursor = conn.cursor()
+        cursor.execute("update %s set books='%s' where name='%s'" % (DataBase.booklist_table,
+                                                                     listToString(booklist.books), booklist.name))
+        conn.commit()
+        conn.close()

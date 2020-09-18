@@ -1,5 +1,7 @@
 # 此文件存储核心的类
-from database import *
+from basic import createBookINFO, listToString
+from database import DataBase
+import fitz
 
 
 class Book:
@@ -17,65 +19,70 @@ class Book:
         self.pub_date = pub_date
         self.publisher = publisher
         self.isbn = isbn  # 以字符串形式存储
-        self.lanuage = language
+        self.language = language
         self.cover_path = cover_path  # 封面的存储位置，通过此信息加载封面
         self.rating = rating  # 评分，int型数据，1星到5星，0表示未评分
         self.file_path = file_path  # 文件位置，可以根据此信息打开文件
         self.tags = tags  # 书籍的标签，列表
         self.bookLists = bookLists  # 所属的书单，列表
+        self.INFO = createBookINFO(ID, name, authors, pub_date, publisher, isbn, language, cover_path, rating,
+                                   file_path, tags, bookLists)
         self.isOpen = False  # 书籍是否已经打开
 
-    # 修改基础信息
-    def setName(self, new_name):
-        self.name = new_name
-        self.updateDB()  # 修改数据库中的数据
+    def getMetadata(self):
+        doc = fitz.open(self.INFO['file_path'])
+        return doc.metadata
+        # metadata['author']作者，['title']:标题，['modData']:修改时间
 
+    def setMetadata(self):
+        data = self.getMetadata()
+        data['author'] = listToString(self.INFO['authors'])
+        data['title'] = self.INFO['name']
+
+    def getToC(self):
+        data = self.getMetadata()
+        return data.getToC()
+
+    def getModDate(self):
+        data = self.getMetadata()
+        return data['modData']
+
+    def updateINFO(self):
+        self.INFO = createBookINFO(self.ID, self.name, self.authors, self.pub_date, self.publisher, self.isbn,
+                                   self.language, self.cover_path, self.rating,
+                                   self.file_path, self.tags, self.bookLists)
+
+    # 应该调用此方法修改作者，而非直接通过属性修改
     def setAuthors(self, new_authors):
+        for author in self.authors:
+            obj = DataBase.getAuthorByName(author)
+            obj.deleteBook(self.ID)
         self.authors = new_authors
-        self.updateDB()  # 修改数据库中的数据
-
-    def setPub_date(self, new_date):
-        self.pub_date = new_date
-        self.updateDB()  # 修改数据库中的数据
-
-    def setIsbn(self, new_isbn):
-        self.isbn = new_isbn
-        self.updateDB()  # 修改数据库中的数据
-
-    def setPublisher(self, new_publisher):
-        self.publisher = new_publisher
-        self.updateDB()  # 修改数据库中的数据
-
-    def setLanguage(self, new_language):
-        self.lanuage = new_language
-        self.updateDB()  # 修改数据库中的数据
-
-    def setCover(self, new_cover):
-        self.cover_path = new_cover
-        self.updateDB()  # 修改数据库中的数据
-
-    def setRating(self, new_rating):
-        self.rating = new_rating
-        self.updateDB()  # 修改数据库中的数据
-
-    def setFile_path(self, new_path):
-        self.file_path = new_path
-        self.updateDB()  # 修改数据库中的数据
-
-    def setTags(self, new_tags):
-        self.tags = new_tags
-        self.updateDB()
+        for author in self.authors:
+            obj = DataBase.getAuthorByName(author)
+            if not obj:  # 该作者不在数据库中
+                obj = Author(author, [])
+                DataBase.addAuthor(obj)
+            obj.addBook(self.ID)
 
     # 把当前书添加到某个书单中
-    # 调用此函数时要确保不传入没有意义的名字，比如说空字符串和只有空格的字符串
-    def addToList(self, list_name):
-        self.bookLists.append(list_name)
-        self.updateDB()
+    # 传入一个BookList对象
+    def addToList(self, booklist_name):
+        booklist = DataBase.getBooksByList(booklist_name)
+        if not booklist:  # 不存在，将创建一个新书单
+            booklist = BookList(booklist_name, [])
+            DataBase.addBooklist(booklist)
+        booklist.addBook(self.ID)
+        self.bookLists.append(booklist_name)
 
+    # 每次修改信息后需主动调用updateDB()方法
     # 修改数据库内书籍的信息
     def updateDB(self):
+        DataBase.updateBook(self)
 
-        pass
+    # 删除书籍
+    def delete(self):
+        DataBase.deleteBook(self)
 
     # 打开当前书籍
     def openBook(self):
@@ -97,32 +104,29 @@ class Book:
 
 
 class Author:
-    def __init__(self, ID, name, books=None):
+    def __init__(self, name, books=None):
         if books is None:
             books = []
-        self.ID = ID  # 因为作者可能同名，所以要有一个关键码ID
         self.name = name
         self.books = books  # 书籍的ID列表
 
-    def addBook(self, book):
-        self.books.append(book)
-        pass
+    # 传入Book对象的ID属性
+    def addBook(self, book_id):
+        self.books.append(book_id)
+        self.updateDB()
 
-    def deleteBook(self, book):
-        if book in self.books:
-            self.books.remove(book)
+    def deleteBook(self, book_id):
+        if book_id in self.books:
+            self.books.remove(book_id)
             if not self.books:
                 # 已经没有该作者写的书了，应该在数据库中删去该作者的信息
-                pass
+                DataBase.deleteAuthor(self)
             else:
                 self.updateDB()
-        else:
-            # 出错
-            pass
 
     # 更新数据库的信息
     def updateDB(self):
-        pass
+        DataBase.updateAuthor(self)
 
 
 class BookList:
@@ -132,18 +136,22 @@ class BookList:
         self.name = name
         self.books = books  # 书籍的ID列表
 
-    def addBook(self, book):
-        self.books.append(book)
+    # 传入一个Book对象的ID属性
+    def addBook(self, book_id):
+        self.books.append(book_id)
         self.updateDB()
 
-    def deleteBook(self, book):
-        self.books.remove(book)
+    def deleteBook(self, book_id):
+        self.books.remove(book_id)
         # 书单内书的数量为空时，不需要删去该书单
         self.updateDB()
 
+    def delete(self):
+        DataBase.deleteBooklist(self)
+
     # 更新数据库信息
     def updateDB(self):
-        pass
+        DataBase.updateBooklist(self)
 
     # 可选功能，书单分享，生成一张分享图片
     def share(self):
@@ -155,7 +163,6 @@ class History:
         self.time = time
         self.content = content
 
-    # 添加到数据库中
-    def addToDB(self):
-        pass
-
+    # 从数据库中删除
+    def delete(self):
+        DataBase.deleteHistory(self)
