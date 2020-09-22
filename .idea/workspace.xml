@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="重写了History,改为使用deque容器，可能引入部分bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +46,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -108,7 +104,9 @@
       <workItem from="1600340788246" duration="45000" />
       <workItem from="1600343919199" duration="1194000" />
       <workItem from="1600346153688" duration="7969000" />
-      <workItem from="1600358917143" duration="17294000" />
+      <workItem from="1600358917143" duration="17755000" />
+      <workItem from="1600416638449" duration="39000" />
+      <workItem from="1600734447304" duration="4323000" />
     </task>
     <task id="LOCAL-00001" summary="try">
       <created>1599913602844</created>
@@ -145,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600411813971</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="为了避免circular import,将数据库模块合并到了类模块里">
+      <created>1600415068116</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1600415068116</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,7 +172,9 @@
     <MESSAGE value="third" />
     <MESSAGE value="完善数据库模块，并且对其他部分进行了简单的修改和补充" />
     <MESSAGE value="基本完善了类模块和数据库模块，添加了setting模块" />
-    <option name="LAST_COMMIT_MESSAGE" value="基本完善了类模块和数据库模块，添加了setting模块" />
+    <MESSAGE value="为了避免circular import,将数据库模块合并到了类模块里" />
+    <MESSAGE value="重写了History,改为使用deque容器，可能引入部分bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="重写了History,改为使用deque容器，可能引入部分bug" />
   </component>
   <component name="WindowStateProjectService">
     <state x="109" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600414011644">
@@ -182,10 +189,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1600354976979" />
-    <state x="331" y="0" key="CommitChangelistDialog2" timestamp="1600411812252">
+    <state x="331" y="0" key="CommitChangelistDialog2" timestamp="1600739224525">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="331" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1600411812252" />
+    <state x="331" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1600739224525" />
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog" timestamp="1600407482580">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -194,36 +201,48 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="723" y="102" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1600272368329" />
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1600414493809">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1600734562879">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1600414493809" />
-    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1600414493808">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1600734562879" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1600734562878">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1600414493808" />
-    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1600414493806">
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1600734562878" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1600734562878">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1600414493806" />
-    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1600414493809">
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1600734562878" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1600734562879">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1600414493809" />
-    <state x="142" y="0" key="SettingsEditor" timestamp="1600272121182">
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1600734562879" />
+    <state x="718" y="312" key="ReplaceDuplicatesPrompt" timestamp="1600737397172">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1600272121182" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1600411821809">
+    <state x="718" y="312" key="ReplaceDuplicatesPrompt/0.0.1280.680@0.0.1280.680" timestamp="1600737397172" />
+    <state x="142" y="0" key="SettingsEditor" timestamp="1600739246639">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1600411821809" />
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1600739246639" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1600415084752">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1600415084752" />
+    <state x="240" y="46" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1600736672109">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="240" y="46" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1280.680@0.0.1280.680" timestamp="1600736672109" />
     <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599913567251">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1599913567251" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1600738588990">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1600738588990" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Demo$test.coverage" NAME="test Coverage Results" MODIFIED="1600414420378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Demo$test.coverage" NAME="test Coverage Results" MODIFIED="1600734547320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
