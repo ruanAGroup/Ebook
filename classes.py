@@ -478,6 +478,7 @@ def createNewBook(name="", authors=None, pub_date="", publisher="", isbn="", lan
     print(ID)
     book = Book(ID, name, authors, pub_date, publisher, isbn, language, cover_path, rating, file_path, tags,
                 bookLists)
+    book.setAuthors(authors)
     DataBase.addBook(book)
     return book
 

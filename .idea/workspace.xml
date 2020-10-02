@@ -1,9 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="重写了History,改为使用deque容器，可能引入部分bug">
+      <change afterPath="$PROJECT_DIR$/fileMethods.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/add-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/add-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/add-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/add-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/add-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/add-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/add-7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/add-8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/booklist-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/booklist-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/bookshelf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/convert-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/convert-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/convert-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/convert-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/convert-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/convert-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/convert-7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/delete-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/delete-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/delete-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/delete-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/delete-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/edit-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/edit-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/edit-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/edit-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/edit-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/edit-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/edit-7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/export-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/export-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/export-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/export-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/help-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/help-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/help-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/help-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/icon-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/icon-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/icon-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/icon-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/icon-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/import-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/import-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/import-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/import-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/import-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/import-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/import-7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/read-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/read-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/read-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/read-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/read-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/search-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/search-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/search-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/search-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/setting-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/setting-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/setting-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/setting-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/share-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/share-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/share-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/share-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/share-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/share-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/share-7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/share-8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/sort-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/sort-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/sort-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/sort-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/sort-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/sort-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/sort-7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/star-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/star-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/star-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/support.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mydialogs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mythreads.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mywidgets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/convert.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons.qrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/app_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/book_catalogue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/book_info.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/change_form.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/change_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/import_book.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/pdf_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/pdf_out.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/search.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/settings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/txt_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/word_logo (2).zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/word_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons_rc.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +151,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="38743c80-06c3-4ac2-bf54-36b5519c82fe" />
+  </component>
   <component name="JupyterTrust" id="40d63bdd-b258-4d02-8a7a-ee30e7bf2436" />
   <component name="ProjectId" id="1hP5QFultef2h2bz45bBOkLMRug" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -35,20 +164,44 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="sqlite&#10;sqlite.xerial" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../DataScience/Learning/Chapter2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Demo" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Demo" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -73,6 +226,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
@@ -106,7 +260,15 @@
       <workItem from="1600346153688" duration="7969000" />
       <workItem from="1600358917143" duration="17755000" />
       <workItem from="1600416638449" duration="39000" />
-      <workItem from="1600734447304" duration="4323000" />
+      <workItem from="1600734447304" duration="4434000" />
+      <workItem from="1600739408515" duration="1203000" />
+      <workItem from="1600740639635" duration="5980000" />
+      <workItem from="1600755619094" duration="19000" />
+      <workItem from="1601478958268" duration="1051000" />
+      <workItem from="1601483561424" duration="1115000" />
+      <workItem from="1601539940284" duration="407000" />
+      <workItem from="1601629718645" duration="8350000" />
+      <workItem from="1601642290695" duration="4535000" />
     </task>
     <task id="LOCAL-00001" summary="try">
       <created>1599913602844</created>
@@ -150,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600415068116</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="重写了History,改为使用deque容器，可能引入部分bug">
+      <created>1600739266908</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1600739266908</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,7 +335,20 @@
       </list>
     </option>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="try" />
     <MESSAGE value="second" />
     <MESSAGE value="third" />
@@ -189,60 +371,61 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1600354976979" />
-    <state x="331" y="0" key="CommitChangelistDialog2" timestamp="1600739224525">
+    <state x="331" y="0" key="CommitChangelistDialog2" timestamp="1600740112045">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="331" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1600739224525" />
+    <state x="331" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1600740112045" />
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog" timestamp="1600407482580">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1600407482580" />
-    <state x="723" y="102" key="FileChooserDialogImpl" timestamp="1600272368329">
+    <state x="723" y="102" key="FileChooserDialogImpl" timestamp="1600746013307">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="723" y="102" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1600272368329" />
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1600734562879">
+    <state x="723" y="102" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1600746013307" />
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1601647124151">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1600734562879" />
-    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1600734562878">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1601647124151" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1601647124151">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1600734562878" />
-    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1600734562878">
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1601647124151" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1601647124150">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1600734562878" />
-    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1600734562879">
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1601647124150" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1601647124151">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1600734562879" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1601647124151" />
     <state x="718" y="312" key="ReplaceDuplicatesPrompt" timestamp="1600737397172">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="718" y="312" key="ReplaceDuplicatesPrompt/0.0.1280.680@0.0.1280.680" timestamp="1600737397172" />
-    <state x="142" y="0" key="SettingsEditor" timestamp="1600739246639">
+    <state x="142" y="0" key="SettingsEditor" timestamp="1601642403105">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1600739246639" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1600415084752">
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1601642403105" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1600740197180">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1600415084752" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1600740197180" />
     <state x="240" y="46" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1600736672109">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="240" y="46" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1280.680@0.0.1280.680" timestamp="1600736672109" />
-    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599913567251">
+    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601479000780">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1599913567251" />
+    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1601479000780" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1600738588990">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1600738588990" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Demo$test.coverage" NAME="test Coverage Results" MODIFIED="1600734547320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Demo$test.coverage" NAME="test Coverage Results" MODIFIED="1601514068190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Demo$main.coverage" NAME="main Coverage Results" MODIFIED="1601647124119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
