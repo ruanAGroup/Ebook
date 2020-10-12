@@ -79,6 +79,7 @@ class MyToolBar(QToolBar):
         self.shareMenu.setFont(QFont("", 14))
         self.toKindle = self.shareMenu.addMenu("发送到kindle")
         self.toKindle.setFont(QFont("", 14))
+        self.toKindle.triggered.connect(self.menuClicked)
         self.inputEmail = QAction("添加Kindle邮箱", self)
         self.inputEmail.triggered.connect(self.inputMail)
         self.toQQ = self.shareMenu.addMenu("分享到QQ")
@@ -134,7 +135,7 @@ class MyToolBar(QToolBar):
             action = QAction(mail, self)
             self.toKindle.addAction(action)
         self.toKindle.addAction(self.inputEmail)
-        self.toKindle.triggered.connect(self.menuClicked)
+        # self.toKindle.triggered.connect(self.menuClicked)
 
     def menuClicked(self, action):
         if action.text() != "添加Kindle邮箱":
@@ -352,6 +353,10 @@ class MyList(QVBoxLayout):
         self.tags = QLabel("无")
         self.booklists = QLabel("无")
         self.bookPath = None
+        temp = QWidget()
+        temp.setFont(QFont("", 14))
+        temp.setLayout(self.form)
+        self.scrollarea.setWidget(temp)
 
     def updateView(self, book: Book):
         if book.cover_path:
@@ -387,15 +392,24 @@ class MyList(QVBoxLayout):
         temp = QWidget()
         temp.setFont(QFont("", 14))
         temp.setLayout(self.form)
-        temp.setMinimumWidth(0)
         self.scrollarea.setWidget(temp)
 
     def openFile(self):
-        os.startfile(self.bookPath)
+        if not self.bookPath:
+            return
+        if os.path.exists(self.bookPath):
+            os.startfile(self.bookPath)
+        else:
+            QMessageBox.about(self, "提醒", "文件不存在")
 
     def openPath(self):
+        if not self.bookPath:
+            return
         mypath, fileName = os.path.split(self.bookPath)
-        os.startfile(mypath)
+        if os.path.exists(mypath):
+            os.startfile(mypath)
+        else:
+            QMessageBox.about(self, "提醒", "路径不存在")
 
 
 class MySearch(QToolBar):
@@ -431,6 +445,7 @@ class MySearch(QToolBar):
         self.searchAct = QAction(QIcon("img/search-4.png"), "搜索", self)
         self.highSearchAct = QAction(QIcon('img/hsearch-1.png'), "高级搜索", self)
         self.historyMenu = QMenu()
+        self.historyMenu.triggered.connect(self.historyClicked)
         self.historyMenu.setFont(QFont("", 14))
         self.historyBtn = QToolButton()
         self.historyBtn.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
@@ -514,7 +529,7 @@ class MySearch(QToolBar):
             t, content = his
             action = QAction(content, self.historyMenu)
             self.historyMenu.addAction(action)
-        self.historyMenu.triggered.connect(self.historyClicked)
+        # self.historyMenu.triggered.connect(self.historyClicked)
 
     def historyClicked(self, action):
         self.inputLine.setText(action.text())

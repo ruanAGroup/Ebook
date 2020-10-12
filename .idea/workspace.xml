@@ -19,8 +19,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="完成了工具栏的UI">
+    <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="中期任务完成">
+      <change afterPath="$PROJECT_DIR$/main.spec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manager.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fileMethods.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileMethods.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywidgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/mywidgets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/文字转图片" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +49,6 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="38743c80-06c3-4ac2-bf54-36b5519c82fe" />
   </component>
   <component name="JupyterTrust" id="40d63bdd-b258-4d02-8a7a-ee30e7bf2436" />
   <component name="ProjectId" id="1hP5QFultef2h2bz45bBOkLMRug" />
@@ -68,7 +73,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -160,6 +165,8 @@
       <workItem from="1601539940284" duration="407000" />
       <workItem from="1601629718645" duration="8350000" />
       <workItem from="1601642290695" duration="5114000" />
+      <workItem from="1601910197347" duration="639000" />
+      <workItem from="1602510125953" duration="736000" />
     </task>
     <task id="LOCAL-00001" summary="try">
       <created>1599913602844</created>
@@ -217,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601647407970</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="中期任务完成">
+      <created>1601910242619</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1601910242619</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,7 +269,8 @@
     <MESSAGE value="为了避免circular import,将数据库模块合并到了类模块里" />
     <MESSAGE value="重写了History,改为使用deque容器，可能引入部分bug" />
     <MESSAGE value="完成了工具栏的UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成了工具栏的UI" />
+    <MESSAGE value="中期任务完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="中期任务完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="109" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600414011644">
@@ -302,22 +317,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="718" y="312" key="ReplaceDuplicatesPrompt/0.0.1280.680@0.0.1280.680" timestamp="1600737397172" />
-    <state x="142" y="0" key="SettingsEditor" timestamp="1601642403105">
+    <state x="142" y="0" key="SettingsEditor" timestamp="1602510473842">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1601642403105" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1601647493453">
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602510473842" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1601910250537">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1601647493453" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1601910250537" />
     <state x="240" y="46" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1600736672109">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="240" y="46" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1280.680@0.0.1280.680" timestamp="1600736672109" />
-    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601479000780">
+    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602510179807">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1601479000780" />
+    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1602510179807" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1600738588990">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
