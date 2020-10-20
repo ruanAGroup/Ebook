@@ -10,9 +10,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="中期任务完成">
+    <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="修改readme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,9 +56,31 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.edit_main">
+    <configuration name="edit_main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Demo" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/edit_main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Demo" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -106,6 +127,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.edit_main" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.test" />
       </list>
@@ -150,7 +172,8 @@
       <workItem from="1601629718645" duration="8350000" />
       <workItem from="1601642290695" duration="5114000" />
       <workItem from="1601910197347" duration="639000" />
-      <workItem from="1602510125953" duration="4272000" />
+      <workItem from="1602510125953" duration="4606000" />
+      <workItem from="1602548731394" duration="2086000" />
     </task>
     <task id="LOCAL-00001" summary="try">
       <created>1599913602844</created>
@@ -222,7 +245,28 @@
       <option name="project" value="LOCAL" />
       <updated>1602510987399</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="写README at 2020/10/12 23:18:01">
+      <created>1602515889248</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1602515889248</updated>
+    </task>
+    <task id="LOCAL-00012" summary="修改readme">
+      <created>1602515966912</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1602515966912</updated>
+    </task>
+    <task id="LOCAL-00013" summary="修改readme">
+      <created>1602516047060</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1602516047060</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,7 +305,9 @@
     <MESSAGE value="重写了History,改为使用deque容器，可能引入部分bug" />
     <MESSAGE value="完成了工具栏的UI" />
     <MESSAGE value="中期任务完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="中期任务完成" />
+    <MESSAGE value="写README at 2020/10/12 23:18:01" />
+    <MESSAGE value="修改readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改readme" />
   </component>
   <component name="WindowStateProjectService">
     <state x="109" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600414011644">
@@ -308,22 +354,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="718" y="312" key="ReplaceDuplicatesPrompt/0.0.1280.680@0.0.1280.680" timestamp="1600737397172" />
-    <state x="142" y="0" key="SettingsEditor" timestamp="1602510473842">
+    <state x="142" y="0" key="SettingsEditor" timestamp="1602551752443">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602510473842" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1602510994181">
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602551752443" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1602516069320">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1602510994181" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1602516069320" />
     <state x="240" y="46" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1600736672109">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="240" y="46" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1280.680@0.0.1280.680" timestamp="1600736672109" />
-    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602515770281">
+    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602515831468">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1602515770281" />
+    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1602515831468" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1600738588990">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
