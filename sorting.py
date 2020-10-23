@@ -17,7 +17,7 @@ def sortByDate(books):
             if books.date[i] > books.date[i + 1]:
                books(length+1)=books(i)
                 books(i)=books(i+1)
-                books(i+1)=books（length+1）
+                books(i+1)=books[length+1]
         length -= 1
      return books
 
