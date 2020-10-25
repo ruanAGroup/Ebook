@@ -1,7 +1,7 @@
 import time
-from PyQt5.QtGui import QIntValidator
+from PyQt5.QtGui import QIntValidator, QFont
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import QDate, pyqtSignal
+from PyQt5.QtCore import QDate, pyqtSignal, QStringListModel, QSize
 from basic import strListToString
 from classes import Book
 from mydatabase import MyDb
@@ -203,7 +203,7 @@ class HighSearchDialog(QDialog):
         
         
 class Setting(QWidget):
-    finishSignal = pyqtSignal(str, str, list, str, int)
+    finishSignal = pyqtSignal(str, str)
 
     def __init__(self):
         super().__init__()
@@ -217,7 +217,7 @@ class Setting(QWidget):
         self.toolbar_size = self.toolbarComboBox.currentText()
         self.toolbarComboBox.currentTextChanged.connect(self.changetoolbar)
         self.ok_Btn1 = QPushButton("确定修改")
-        self.ok_Btn1.clicked.connect(self.on_Clicked1)
+        self.ok_Btn1.clicked.connect(self.onOKClicked)
 
         self.navigationLabel = QLabel('导航页图标大小：')
         self.navigationComboBox = QComboBox(self)
@@ -271,70 +271,77 @@ class Setting(QWidget):
         self.RB2_3 = QRadioButton('模糊匹配')
         self.RB2_3.toggled.connect(lambda: self.btnstate1(self.RB2_3))
         layout.addWidget(self.RB2_3)
+        layout.addWidget(self.ok_Btn1)
         self.setLayout(layout)
 
-        def changetoolbar(self, attr):
-            self.toolbar_size = attr
-            model = QStringListModel()
-            if attr == '大':
-                model.MyToolBar.setIconSize(QSize(200, 200))
-            elif attr == '中':
-                model.MyToolBar.setIconSize(QSize(100, 100))
-            else:
-                model.MyToolBar.setIconSize(QSize(50, 50))
-            self.inputCompleter.setModel(model)
+    def onOKClicked(self):
+        sortMode = "按作者"
+        searchMode = "模糊匹配"
+        self.finishSignal.emit(sortMode, searchMode)
+        self.close()
 
-        def changenavigation(self, attr):
-            self.navigation_size = attr
-            model = QStringListModel()
-            if attr == '大':
-                model.MyTree.setIconSize(QSize(100, 100))
-            elif attr == '中':
-                model.MyTree.setIconSize(QSize(50, 50))
-            else:
-                model.MyTree.setIconSize(QSize(25, 25))
-            self.inputCompleter.setModel(model)
+    def changetoolbar(self, attr):
+        self.toolbar_size = attr
+        model = QStringListModel()
+        if attr == '大':
+            model.MyToolBar.setIconSize(QSize(200, 200))
+        elif attr == '中':
+            model.MyToolBar.setIconSize(QSize(100, 100))
+        else:
+            model.MyToolBar.setIconSize(QSize(50, 50))
+        self.inputCompleter.setModel(model)
 
-        def changebook_info(self, attr):
-            self.book_info_size = attr
-            model = QStringListModel()
-            if attr == '大':
-                model.MyList.temwidget.setFont(QFont("", 30))
-            elif attr == '中':
-                model.MyList.temwidget.setFont(QFont("", 14))
-            else:
-                model.MyList.temwidget.setFont(QFont("", 7))
-            self.inputCompleter.setModel(model)
+    def changenavigation(self, attr):
+        self.navigation_size = attr
+        model = QStringListModel()
+        if attr == '大':
+            model.MyTree.setIconSize(QSize(100, 100))
+        elif attr == '中':
+            model.MyTree.setIconSize(QSize(50, 50))
+        else:
+            model.MyTree.setIconSize(QSize(25, 25))
+        self.inputCompleter.setModel(model)
 
-        def btnstate(self, btn):
-            self.searchAttr = self.btn.text()
-            self.searchBy.currentTextChanged.connect(self.changeAttr)
-            if btn.text() == "按书名":
-                if btn.isChecked():
-                    self.searchBy.setCurrentIndex(0)
-            elif btn.text() == "按作者":
-                if btn.isChecked():
-                    self.searchBy.setCurrentIndex(1)
-            elif btn.text() == "按书单":
-                if btn.isChecked():
-                    self.searchBy.setCurrentIndex(2)
-            elif btn.text() == "按标签":
-                if btn.isChecked():
-                    self.searchBy.setCurrentIndex(3)
-            elif btn.text() == "按出版社":
-                if btn.isChecked():
-                    self.searchBy.setCurrentIndex(4)
-            else:  # 按ISBN
-                if btn.isChecked():
-                    self.searchBy.setCurrentIndex(5)
+    def changebook_info(self, attr):
+        self.book_info_size = attr
+        model = QStringListModel()
+        if attr == '大':
+            model.MyList.temwidget.setFont(QFont("", 30))
+        elif attr == '中':
+            model.MyList.temwidget.setFont(QFont("", 14))
+        else:
+            model.MyList.temwidget.setFont(QFont("", 7))
+        self.inputCompleter.setModel(model)
 
-        def btnstate1(self, btn):
-            if btn.text() == '正则匹配':
-                if btn.isChecked():
-                    self.searchMode.setCurrentIndex(2)
-            elif btn.text() == "准确匹配":
-                if btn.isChecked():
-                    self.searchMode.setCurrentIndex(0)
-            else:  # 模糊匹配
-                if btn.isChecked():
-                    self.searchMode.setCurrentIndex(1)
+    def btnstate(self, btn):
+        self.searchAttr = self.btn.text()
+        self.searchBy.currentTextChanged.connect(self.changeAttr)
+        if btn.text() == "按书名":
+            if btn.isChecked():
+                self.searchBy.setCurrentIndex(0)
+        elif btn.text() == "按作者":
+            if btn.isChecked():
+                self.searchBy.setCurrentIndex(1)
+        elif btn.text() == "按书单":
+            if btn.isChecked():
+                self.searchBy.setCurrentIndex(2)
+        elif btn.text() == "按标签":
+            if btn.isChecked():
+                self.searchBy.setCurrentIndex(3)
+        elif btn.text() == "按出版社":
+            if btn.isChecked():
+                self.searchBy.setCurrentIndex(4)
+        else:  # 按ISBN
+            if btn.isChecked():
+                self.searchBy.setCurrentIndex(5)
+
+    def btnstate1(self, btn):
+        if btn.text() == '正则匹配':
+            if btn.isChecked():
+                self.searchMode.setCurrentIndex(2)
+        elif btn.text() == "准确匹配":
+            if btn.isChecked():
+                self.searchMode.setCurrentIndex(0)
+        else:  # 模糊匹配
+            if btn.isChecked():
+                self.searchMode.setCurrentIndex(1)
