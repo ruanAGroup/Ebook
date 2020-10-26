@@ -186,14 +186,7 @@ class ExportINFODialog(QDialog):
 
     def FinishExport(self, filename):
         self.finishSignal.emit(filename)
-
-
-class SettingDialog(QDialog):
-    finishSignal = pyqtSignal()
-
-    def __init__(self, parent=None):
-        super(SettingDialog, self).__init__(parent)
-
+        
 
 class HighSearchDialog(QDialog):
     finishSignal = pyqtSignal()
@@ -202,11 +195,11 @@ class HighSearchDialog(QDialog):
         super(HighSearchDialog, self).__init__(parent)
         
         
-class Setting(QWidget):
-    finishSignal = pyqtSignal(str, str)
+class Setting(QDialog):
+    finishSignal = pyqtSignal(str, str, str， str， str)
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        super(Setting, self).__init__(parent)
 
         self.toolbarLabel = QLabel('工具栏图标大小：')
         self.toolbarComboBox = QComboBox(self)
@@ -214,10 +207,6 @@ class Setting(QWidget):
         self.toolbarComboBox.addItem('大')
         self.toolbarComboBox.addItem('中')
         self.toolbarComboBox.addItem('小')
-        self.toolbar_size = self.toolbarComboBox.currentText()
-        self.toolbarComboBox.currentTextChanged.connect(self.changetoolbar)
-        self.ok_Btn1 = QPushButton("确定修改")
-        self.ok_Btn1.clicked.connect(self.onOKClicked)
 
         self.navigationLabel = QLabel('导航页图标大小：')
         self.navigationComboBox = QComboBox(self)
@@ -225,8 +214,6 @@ class Setting(QWidget):
         self.navigationComboBox.addItem('大')
         self.navigationComboBox.addItem('中')
         self.navigationComboBox.addItem('小')
-        self.navigation_size = self.navigationComboBox.currentText()
-        self.navigationComboBox.currentTextChanged.connect(self.changenavigation)
 
         self.book_infoLabel = QLabel('书籍详情字体大小：')
         self.book_infoComboBox = QComboBox(self)
@@ -234,114 +221,48 @@ class Setting(QWidget):
         self.book_infoComboBox.addItem('大')
         self.book_infoComboBox.addItem('中')
         self.book_infoComboBox.addItem('小')
-        self.book_info_size = self.book_infoComboBox.currentText()
-        self.book_infoComboBox.currentTextChanged.connect(self.changebook_info)
 
-        self.searchModelLabel = QLabel('默认搜索条件：')
-        layout = QHBoxLayout()
-        self.RB1_1 = QRadioButton('按书名')
-        self.RB1_1.setChecked(True)  # 默认选中RB1_1
-        self.RB1_1.toggled.connect(lambda: self.btnstate(self.RB1_1))
-        layout.addWidget(self.RB1_1)
-        self.RB1_2 = QRadioButton('按作者')
-        self.RB1_2.toggled.connect(lambda: self.btnstate(self.RB1_2))
-        layout.addWidget(self.RB1_2)
-        self.RB1_3 = QRadioButton('按书单')
-        self.RB1_3.toggled.connect(lambda: self.btnstate(self.RB1_3))
-        layout.addWidget(self.RB1_3)
-        self.RB1_4 = QRadioButton('按标签')
-        self.RB1_4.toggled.connect(lambda: self.btnstate(self.RB1_4))
-        layout.addWidget(self.RB1_4)
-        self.RB1_5 = QRadioButton('按出版社')
-        self.RB1_5.toggled.connect(lambda: self.btnstate(self.RB1_5))
-        layout.addWidget(self.RB1_3)
-        self.RB1_6 = QRadioButton('按ISBN')
-        self.RB1_6.toggled.connect(lambda: self.btnstate(self.RB1_6))
-        layout.addWidget(self.RB1_6)
+        self.searchLabel = QLabel('默认搜索条件：')
+        self.searchComboBox = QComboBox(self)
+        self.searchComboBox.move(100, 20)
+        self.searchComboBox.addItem('按书名')
+        self.searchComboBox.addItem('按作者')
+        self.searchComboBox.addItem('按书单')
+        self.searchComboBox.addItem('按标签')
+        self.searchComboBox.addItem('按出版社')
+        self.searchComboBox.addItem('按ISBN')
 
-        self.searchModelLabel = QLabel('默认匹配模式：')
-        layout = QHBoxLayout()
-        self.RB2_1 = QRadioButton('正则匹配')
-        self.RB2_1.setChecked(True)  # 默认选中RB1_1
-        self.RB2_1.toggled.connect(lambda: self.btnstate1(self.RB2_1))
-        layout.addWidget(self.RB2_1)
-        self.RB2_2 = QRadioButton('准确匹配')
-        self.RB2_2.toggled.connect(lambda: self.btnstate1(self.RB2_2))
-        layout.addWidget(self.RB2_2)
-        self.RB2_3 = QRadioButton('模糊匹配')
-        self.RB2_3.toggled.connect(lambda: self.btnstate1(self.RB2_3))
-        layout.addWidget(self.RB2_3)
-        layout.addWidget(self.ok_Btn1)
-        self.setLayout(layout)
+        self.searchModeLabel = QLabel('默认匹配模式：')
+        self.searchModeComboBox = QComboBox(self)
+        self.searchModeComboBox.move(100, 20)
+        self.searchModeComboBox.addItem('准确匹配')
+        self.searchModeComboBox.addItem('模糊匹配')
+        self.searchModeComboBox.addItem('正则匹配')
 
-    def onOKClicked(self):
-        sortMode = "按作者"
-        searchMode = "模糊匹配"
-        self.finishSignal.emit(sortMode, searchMode)
+        self.ok_Btn1 = QPushButton("确定修改")
+        self.ok_Btn1.clicked.connect(self.onOK_Clicked)
+
+        self.cancle_Btn1 = QPushButton("取消修改")
+        self.cancle_Btn1.clicked.connect(self.cancle_Clicked)
+
+        self.settings_layout = QFormLayout()
+        self.settings_layout.addRow(self.toolbarLabel, self.toolbarComboBox)
+        self.settings_layout.addRow(self.navigationLabel, self.navigationComboBox)
+        self.settings_layout.addRow(self.book_infoLabel, self.book_infoComboBox)
+        self.layout.addRow(self.searchLabel, self.searchComboBox)
+        self.layout.addRow(self.searchModeLabel, self.searchModeComboBox)
+        self.settings_layout.addRow(self.ok_Btn1)
+        self.settings_layout.addRow(self.cancle_Btn1)
+        self.setLayout(self.settings_layout)
+
+    def onOK_Clicked(self):
+        toolbarsize = self.toolbarComboBox.currentText()   # 工具栏图标大小
+        navigationsize = self.navigationComboBox.currentText()  # 导航条图标大小
+        bookinfosize = self.book_infoComboBox.currentText()   # 书籍详情字体大小
+        searchby = self.searchComboBox.currentText()  # 搜索条件 例如：“按作者”
+        searchmode = self.searchModeComboBox.currentText()  # 匹配模式 例如“正则匹配”
+        self.finishSignal.emit(toolbarsize, navigationsize, bookinfosize, searchby, searchmode)
         self.close()
 
-    def changetoolbar(self, attr):
-        self.toolbar_size = attr
-        model = QStringListModel()
-        if attr == '大':
-            model.MyToolBar.setIconSize(QSize(200, 200))
-        elif attr == '中':
-            model.MyToolBar.setIconSize(QSize(100, 100))
-        else:
-            model.MyToolBar.setIconSize(QSize(50, 50))
-        self.inputCompleter.setModel(model)
-
-    def changenavigation(self, attr):
-        self.navigation_size = attr
-        model = QStringListModel()
-        if attr == '大':
-            model.MyTree.setIconSize(QSize(100, 100))
-        elif attr == '中':
-            model.MyTree.setIconSize(QSize(50, 50))
-        else:
-            model.MyTree.setIconSize(QSize(25, 25))
-        self.inputCompleter.setModel(model)
-
-    def changebook_info(self, attr):
-        self.book_info_size = attr
-        model = QStringListModel()
-        if attr == '大':
-            model.MyList.temwidget.setFont(QFont("", 30))
-        elif attr == '中':
-            model.MyList.temwidget.setFont(QFont("", 14))
-        else:
-            model.MyList.temwidget.setFont(QFont("", 7))
-        self.inputCompleter.setModel(model)
-
-    def btnstate(self, btn):
-        self.searchAttr = self.btn.text()
-        self.searchBy.currentTextChanged.connect(self.changeAttr)
-        if btn.text() == "按书名":
-            if btn.isChecked():
-                self.searchBy.setCurrentIndex(0)
-        elif btn.text() == "按作者":
-            if btn.isChecked():
-                self.searchBy.setCurrentIndex(1)
-        elif btn.text() == "按书单":
-            if btn.isChecked():
-                self.searchBy.setCurrentIndex(2)
-        elif btn.text() == "按标签":
-            if btn.isChecked():
-                self.searchBy.setCurrentIndex(3)
-        elif btn.text() == "按出版社":
-            if btn.isChecked():
-                self.searchBy.setCurrentIndex(4)
-        else:  # 按ISBN
-            if btn.isChecked():
-                self.searchBy.setCurrentIndex(5)
-
-    def btnstate1(self, btn):
-        if btn.text() == '正则匹配':
-            if btn.isChecked():
-                self.searchMode.setCurrentIndex(2)
-        elif btn.text() == "准确匹配":
-            if btn.isChecked():
-                self.searchMode.setCurrentIndex(0)
-        else:  # 模糊匹配
-            if btn.isChecked():
-                self.searchMode.setCurrentIndex(1)
+    def cancle_Clicked(self):
+        self.close()
