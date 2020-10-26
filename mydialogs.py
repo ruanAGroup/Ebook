@@ -245,15 +245,14 @@ class Setting(QDialog):
         self.cancle_Btn1 = QPushButton("取消修改")
         self.cancle_Btn1.clicked.connect(self.cancle_Clicked)
 
-        self.settings_layout = QFormLayout()
-        self.settings_layout.addRow(self.toolbarLabel, self.toolbarComboBox)
-        self.settings_layout.addRow(self.navigationLabel, self.navigationComboBox)
-        self.settings_layout.addRow(self.book_infoLabel, self.book_infoComboBox)
-        self.settings_layout.addRow(self.searchLabel, self.searchComboBox)
-        self.settings_layout.addRow(self.searchModeLabel, self.searchModeComboBox)
-        self.settings_layout.addRow(self.ok_Btn1)
-        self.settings_layout.addRow(self.cancle_Btn1)
-        self.setLayout(self.settings_layout)
+        self.form = QFormLayout()
+        self.form.addRow(self.toolbarLabel, self.toolbarComboBox)
+        self.form.addRow(self.navigationLabel, self.navigationComboBox)
+        self.form.addRow(self.book_infoLabel, self.book_infoComboBox)
+        self.form.addRow(self.searchLabel, self.searchComboBox)
+        self.form.addRow(self.searchModeLabel, self.searchModeComboBox)
+        self.form.addRow(self.ok_Btn1, self.cancle_Btn1)
+        self.setLayout(self.form)
 
     def onOK_Clicked(self):
         toolbarsize = self.toolbarComboBox.currentText()   # 工具栏图标大小
