@@ -11,7 +11,7 @@ def dict_to_file(self, dictionary, filename):
             json.dump(dictionary, f_obj)
     except FileNotFoundError:
         filename = input("文件不存在，请重新输入：")
-        self.file_for_dict(self, filename)
+        self.dict_to_file(self, dictionary, filename)
 
 
 def file_for_dict(self, filename):
