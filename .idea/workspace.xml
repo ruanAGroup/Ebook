@@ -10,9 +10,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="合并高级搜索和设置模块">
-      <change afterPath="$PROJECT_DIR$/books/rs_2/Python核心编程.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/rs_2/cover.png" afterDir="false" />
+    <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="合并高级搜索和设置部分">
+      <change afterPath="$PROJECT_DIR$/books/rs_1/Python核心编程.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/rs_1/cover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/info.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydatabase.py" beforeDir="false" afterPath="$PROJECT_DIR$/mydatabase.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydialogs.py" beforeDir="false" afterPath="$PROJECT_DIR$/mydialogs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywidgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/mywidgets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +188,7 @@
       <workItem from="1603467960506" duration="1376000" />
       <workItem from="1603536930348" duration="1236000" />
       <workItem from="1603606029111" duration="1613000" />
-      <workItem from="1603707658358" duration="1649000" />
+      <workItem from="1603707658358" duration="4959000" />
     </task>
     <task id="LOCAL-00001" summary="try">
       <created>1599913602844</created>
@@ -302,7 +309,21 @@
       <option name="project" value="LOCAL" />
       <updated>1603718458525</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="合并高级搜索和设置部分">
+      <created>1603718572225</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1603718572225</updated>
+    </task>
+    <task id="LOCAL-00019" summary="合并高级搜索和设置部分">
+      <created>1603718594395</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1603718594395</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,7 +367,8 @@
     <MESSAGE value="演示" />
     <MESSAGE value="修复上次提交小问题" />
     <MESSAGE value="合并高级搜索和设置模块" />
-    <option name="LAST_COMMIT_MESSAGE" value="合并高级搜索和设置模块" />
+    <MESSAGE value="合并高级搜索和设置部分" />
+    <option name="LAST_COMMIT_MESSAGE" value="合并高级搜索和设置部分" />
   </component>
   <component name="WindowStateProjectService">
     <state x="109" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600414011644">
@@ -357,10 +379,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="481" y="141" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1600414046857" />
-    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600354976979">
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603718586989">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1600354976979" />
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1603718586989" />
     <state x="331" y="0" key="CommitChangelistDialog2" timestamp="1600740112045">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -373,38 +395,38 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="723" y="102" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1603718470853" />
-    <state width="1237" height="170" key="GridCell.Tab.0.bottom" timestamp="1603718429076">
+    <state width="1237" height="332" key="GridCell.Tab.0.bottom" timestamp="1603721573920">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="170" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603718429076" />
-    <state width="1237" height="170" key="GridCell.Tab.0.center" timestamp="1603718429073">
+    <state width="1237" height="332" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603721573920" />
+    <state width="1237" height="332" key="GridCell.Tab.0.center" timestamp="1603721573919">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="170" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1603718429073" />
-    <state width="1237" height="170" key="GridCell.Tab.0.left" timestamp="1603718429072">
+    <state width="1237" height="332" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1603721573919" />
+    <state width="1237" height="332" key="GridCell.Tab.0.left" timestamp="1603721573919">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="170" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1603718429072" />
-    <state width="1237" height="170" key="GridCell.Tab.0.right" timestamp="1603718429075">
+    <state width="1237" height="332" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1603721573919" />
+    <state width="1237" height="332" key="GridCell.Tab.0.right" timestamp="1603721573919">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="170" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1603718429075" />
-    <state width="1237" height="170" key="GridCell.Tab.1.bottom" timestamp="1603718429079">
+    <state width="1237" height="332" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1603721573919" />
+    <state width="1237" height="332" key="GridCell.Tab.1.bottom" timestamp="1603721573924">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="170" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603718429079" />
-    <state width="1237" height="170" key="GridCell.Tab.1.center" timestamp="1603718429078">
+    <state width="1237" height="332" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603721573924" />
+    <state width="1237" height="332" key="GridCell.Tab.1.center" timestamp="1603721573922">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="170" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1603718429078" />
-    <state width="1237" height="170" key="GridCell.Tab.1.left" timestamp="1603718429077">
+    <state width="1237" height="332" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1603721573922" />
+    <state width="1237" height="332" key="GridCell.Tab.1.left" timestamp="1603721573921">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="170" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1603718429077" />
-    <state width="1237" height="170" key="GridCell.Tab.1.right" timestamp="1603718429078">
+    <state width="1237" height="332" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1603721573921" />
+    <state width="1237" height="332" key="GridCell.Tab.1.right" timestamp="1603721573924">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="170" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1603718429078" />
+    <state width="1237" height="332" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1603721573924" />
     <state x="121" y="51" key="MergeDialog" timestamp="1603707699380">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -417,10 +439,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1603606515535" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1603707956224">
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1603718595595">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1603707956224" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1603718595595" />
     <state x="240" y="46" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1600736672109">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -437,6 +459,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Demo$test.coverage" NAME="test Coverage Results" MODIFIED="1601514068190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Demo$edit_main.coverage" NAME="edit_main Coverage Results" MODIFIED="1603156530212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Demo$main.coverage" NAME="main Coverage Results" MODIFIED="1603718308068" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Demo$main.coverage" NAME="main Coverage Results" MODIFIED="1603721279052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

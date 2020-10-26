@@ -119,6 +119,17 @@ class MyDb:
         self.close()
         return names
 
+    def getAllBookNameIDs(self):
+        self.connect()
+        ret = self.cursor.execute('select ID, name from %s' % self.book_table)
+        bookname_ids = []
+        for line in ret:
+            ID = line[0]
+            name = line[1]
+            bookname_ids.append(name+'-'+str(ID))
+        self.close()
+        return bookname_ids
+
     def getAllISBNs(self):
         isbns = set()
         self.connect()

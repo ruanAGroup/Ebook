@@ -3,7 +3,7 @@ import re
 from math import floor, ceil
 from PyQt5 import QtGui
 from PyQt5.QtCore import QSize, Qt, pyqtSignal, QAbstractItemModel, QStringListModel
-from PyQt5.QtGui import QFont, QIcon, QPixmap, QMouseEvent
+from PyQt5.QtGui import QFont, QIcon, QPixmap, QMouseEvent, QCursor
 from PyQt5.QtWidgets import *
 from basic import strListToString, email_to
 from classes import Book
@@ -256,11 +256,72 @@ class MyLabel(QLabel):
         super(MyLabel, self).mousePressEvent(ev)
 
 
+class MenuLabel(QLabel):
+    clicked = pyqtSignal()
+    editDataSignal = pyqtSignal()
+
+    def __init__(self, db, book, *args):
+        super(MenuLabel, self).__init__(*args)
+        self.db = db
+        self.book = book
+        self.menu = QMenu()
+        editData = QAction("编辑元数据", self.menu)
+        editData.triggered.connect(self.onEditData)
+        self.menu.addActions([editData, ])
+        self.addTag = self.menu.addMenu("添加标签")
+        self.addToBookList = self.menu.addMenu("添加到书单")
+        self.sendToKindle = self.menu.addMenu("发送到Kindle")
+        # addToBookList = QAction("添加到书单", self.menu)
+        self.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.customContextMenuRequested.connect(self.showContextMenu)
+
+    def generateAddTagMenu(self):
+        self.addTag.clear()
+        tags = self.db.getAllTags()
+        tags -= set(self.book.tags)
+        for tag in tags:
+            action = QAction(tag, self)
+            self.addTag.addAction(action)
+
+    def generateAddToBookListMenu(self):
+        self.addToBookList.clear()
+        booklists = {booklist.name for booklist in self.db.getAllBookLists()}
+        booklists -= set(self.book.bookLists)
+        for booklist in booklists:
+            action = QAction(booklist, self)
+            self.addToBookList.addAction(action)
+
+    def generateSendToKindleMenu(self):
+        self.sendToKindle.clear()
+        mails = self.db.getAllKindleMail()
+        for mail in mails:
+            action = QAction(mail, self)
+            self.sendToKindle.addAction(action)
+
+    def generateContextMenu(self):
+        self.generateAddTagMenu()
+        self.generateAddToBookListMenu()
+        self.generateSendToKindleMenu()
+
+    def showContextMenu(self, point):
+        if self.underMouse():
+            self.generateContextMenu()
+            self.menu.exec_(QCursor.pos())
+
+    def onEditData(self):
+        self.editDataSignal.emit()
+
+    def mousePressEvent(self, ev):
+        self.clicked.emit()
+        super(MenuLabel, self).mousePressEvent(ev)
+
+
 class MyGrid(QGridLayout):
     itemClicked = pyqtSignal(int)
 
-    def __init__(self, parent, scro):
+    def __init__(self, parent, scro, db):
         super(MyGrid, self).__init__(parent)
+        self.db = db
         self.father = parent
         self.scrollarea = scro
         self.setSpacing(30)
@@ -280,7 +341,7 @@ class MyGrid(QGridLayout):
         points = [(i, j) for i in range(rows) for j in range(cols)]
         tempWid = QWidget()
         for point, book in zip(points, books):
-            tempLabel = MyLabel()
+            tempLabel = MenuLabel(self.db, book)
             tempLabel.setPixmap(QPixmap(book.cover_path).scaled(self.itemWidth, self.itemHeight))
             tempLabel.setScaledContents(True)
             if book.name:

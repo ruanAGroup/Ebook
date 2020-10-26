@@ -25,7 +25,7 @@ class BookManager(QMainWindow):
         self.scrollarea = QScrollArea()
         tempwidget = QWidget()
         # tempwidget.setStyleSheet("QLabel{border:2px solid red;}")
-        self.booksView = MyGrid(tempwidget, self.scrollarea)
+        self.booksView = MyGrid(tempwidget, self.scrollarea, self.db)
         self.booksView.itemClicked.connect(self.updateInfo)
         tempinfo = QWidget()
         # tempinfo.setMinimumWidth(0)
@@ -288,7 +288,21 @@ class BookManager(QMainWindow):
         self.booksView.updateView(self.curShowBooks)
 
     def addBookList(self):
-        pass
+        dig = CreateBookListDialog(self)
+        dig.finishSignal.connect(self.onAddBookList)
+        bookname_ids = self.db.getAllBookNameIDs()
+        dig.input2.addItems(bookname_ids)
+        dig.show()
+
+    def onAddBookList(self, booklistname, bookIds):
+        for ID in bookIds:
+            book = self.db.getBookByID(ID)
+            book.addToList(self.db, booklistname)
+            book.updateDB(self.db)
+        self.updateTreeView()
+        if self.booksView.lastActive:
+            self.updateInfo(self.booksView.dict[self.booksView.lastActive])
+        self.searchLine.changeAttr(self.searchLine.searchAttr)
 
     def openBookShelf(self):
         os.startfile(self.bookShelfPath)

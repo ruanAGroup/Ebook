@@ -1,12 +1,37 @@
 import time
+
+from PyQt5 import QtGui
 from PyQt5.QtGui import QIntValidator, QFont
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import QDate, pyqtSignal, QStringListModel, QSize
+from PyQt5.QtCore import QDate, pyqtSignal, QStringListModel, QSize, Qt
 from basic import strListToString
 from classes import Book
 from mydatabase import MyDb
 from mythreads import convertThread
 from fileMethods import *
+
+
+class MyComboBox(QComboBox):
+    def __init__(self, parent=None):
+        super(MyComboBox, self).__init__(parent)
+        self.standModel = QtGui.QStandardItemModel(self)
+        self.setModel(self.standModel)
+        self.view().pressed.connect(self.onItemClicked)
+
+    def onItemClicked(self, index):
+        item = self.model().itemFromIndex(index)
+        if item.checkState() == Qt.Checked:
+            item.setCheckState(Qt.Unchecked)
+        else:
+            item.setCheckState(Qt.Checked)
+
+    def getAllCheckedItems(self):
+        items = []
+        for index in range(self.count()):
+            item = self.model().item(index)
+            if item.checkState() == Qt.Checked:
+                items.append(int(item.text().split('-')[-1]))
+        return items
 
 
 class EditDataDialog(QDialog):
@@ -310,3 +335,33 @@ class Setting(QDialog):
 
     def cancle_Clicked(self):
         self.close()
+
+
+class CreateBookListDialog(QDialog):
+    finishSignal = pyqtSignal(str, list)
+
+    def __init__(self, parent=None):
+        super(CreateBookListDialog, self).__init__(parent)
+        self.form = QFormLayout()
+        self.label1 = QLabel("书单名")
+        self.input1 = QLineEdit()
+        self.label2 = QLabel("添加书籍")
+        self.input2 = MyComboBox()
+        self.okBtn = QPushButton("确定")
+        self.okBtn.clicked.connect(self.onOk)
+        self.cancleBtn = QPushButton("取消")
+        self.cancleBtn.clicked.connect(self.onCancle)
+        self.form.addRow(self.label1, self.input1)
+        self.form.addRow(self.label2, self.input2)
+        self.form.addRow(self.okBtn, self.cancleBtn)
+        self.setLayout(self.form)
+
+    def onOk(self):
+        booklist_name = self.input1.text()
+        book_ids = self.input2.getAllCheckedItems()
+        self.finishSignal.emit(booklist_name, book_ids)
+        self.close()
+
+    def onCancle(self):
+        self.close()
+
