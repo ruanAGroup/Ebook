@@ -189,10 +189,60 @@ class ExportINFODialog(QDialog):
         
 
 class HighSearchDialog(QDialog):
-    finishSignal = pyqtSignal()
+    finishSignal = pyqtSignal(str, list, str, list)
 
     def __init__(self, parent=None):
         super(HighSearchDialog, self).__init__(parent)
+        
+        self.booknameLabel = QLabel("书名:")
+        self.booknameInput = QLineEdit()
+        self.bookauthorLabel = QLabel("作者:")
+        self.bookauthorInput = QLineEdit()
+        self.pressLabel = QLabel("出版社：")
+        self.pressInput = QLineEdit()
+        self.booktagLabel = QLabel("标签：")
+        self.booktagInput = QLineEdit()
+
+        self.okBtn = QPushButton("确定搜索")
+        self.okBtn.clicked.connect(self.onClicked)
+        self.cancleBtn = QPushButton("取消搜索")
+        self.cancleBtn.clicked.connect(self.onCancle)
+
+        self.form = QFormLayout()
+        self.form.addRow(self.booknameLabel, self.booknameInput)
+        self.form.addRow(self.bookauthorLabel, self.bookauthorInput)
+        self.form.addRow(self.pressLabel, self.pressInput)
+        self.form.addRow(self.booktagLabel, self.booktagInput)
+        self.form.addRow(self.okBtn, self.cancleBtn)
+        self.setLayout(self.form)
+
+    def onClicked(self):
+
+        if self.booknameInput.text():
+            name = self.booknameInput.text()
+        else:
+            name = 0
+
+        if self.bookauthorInput.text():
+            authors = parseStrListString(self.bookauthorInput.text())
+        else:
+            authors = 0
+
+        if self.pressInput.text():
+            press = self.pressInput.text()
+        else:
+            press = 0
+
+        if self.booktagInput.text():
+            booktag = parseStrListString(self.booktagInput.text())
+        else:
+            booktag = 0
+
+        self.finishSignal.emit(name, authors, press, booktag)
+        self.close()
+
+    def onCancle(self):
+        self.close()
         
         
 class Setting(QDialog):
