@@ -38,10 +38,7 @@ class BookManager(QMainWindow):
         self.scrollarea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.scrollarea.setMinimumWidth(1190)
         self.scrollarea.setMaximumWidth(1800)
-        # self.scrollarea.resizeEvent = self.resizeUpdate
-        # tempwidget.setLayout(self.booksView)
         self.scrollarea.setWidget(tempwidget)
-        # self.scrollarea.setLayout(self.booksView)
         tempinfo.setLayout(self.infoView)
         splitter1 = QSplitter(Qt.Horizontal)
         splitter1.addWidget(self.scrollarea)

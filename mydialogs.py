@@ -217,27 +217,22 @@ class HighSearchDialog(QDialog):
         self.setLayout(self.form)
 
     def onClicked(self):
-
         if self.booknameInput.text():
             name = self.booknameInput.text()
         else:
-            name = 0
-
+            name = ""
         if self.bookauthorInput.text():
             authors = parseStrListString(self.bookauthorInput.text())
         else:
-            authors = 0
-
+            authors = []
         if self.pressInput.text():
             press = self.pressInput.text()
         else:
-            press = 0
-
+            press = ""
         if self.booktagInput.text():
             booktag = parseStrListString(self.booktagInput.text())
         else:
-            booktag = 0
-
+            booktag = []
         self.finishSignal.emit(name, authors, press, booktag)
         self.close()
 

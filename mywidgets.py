@@ -10,7 +10,7 @@ from classes import Book
 from typing import List
 import heapq
 from mydatabase import MyDb
-
+from mydialogs import HighSearchDialog
 
 Books = List[Book]
 
@@ -519,7 +519,23 @@ class MySearch(QToolBar):
         self.updateBookViewSignal.emit(books)
 
     def onHighSearch(self):
-        pass
+        dig = HighSearchDialog(self)
+        dig.finishSignal.connect(self.handleHigh)
+        dig.show()
+
+    def handleHigh(self, name, authors, press, booktag):  # 默认为模糊匹配
+        books = self.db.getAllBooks()
+        if name:
+            books = [book for book in books if name in book.name]
+        if authors:
+            for author in authors:
+                books = [book for book in books if book.hasAnthorFuzzy(author)]
+        if press:
+            books = [book for book in books if press in book.publisher]
+        if booktag:
+            for tag in booktag:
+                books = [book for book in books if book.hasTagFuzzy(tag)]
+        self.updateBookViewSignal.emit(books)
 
     def updateHistory(self):
         self.historyMenu.clear()
