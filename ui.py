@@ -354,10 +354,10 @@ class BookManager(QMainWindow):
     #     pass
 
     def setSetting(self):
-        setting = Setting()
+        setting = Setting(self)
         setting.finishSignal.connect(self.onReset)
         setting.show()
 
-    def onReset(self, sortMode, SearchMode):
-        print(sortMode, SearchMode)
+    def onReset(self, sortMode, SearchMode, c, d, e):
+        print(sortMode, SearchMode, c, d, e)
 

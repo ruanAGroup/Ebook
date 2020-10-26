@@ -246,7 +246,7 @@ class HighSearchDialog(QDialog):
         
         
 class Setting(QDialog):
-    finishSignal = pyqtSignal(str, str, str， str， str)
+    finishSignal = pyqtSignal(str, str, str, str, str)
 
     def __init__(self, parent=None):
         super(Setting, self).__init__(parent)
