@@ -15,6 +15,8 @@ class BookManager(QMainWindow):
 
         self.mainExePath = os.getcwd()
         self.db = MyDb(os.path.join(self.mainExePath, 'info.db'))
+        if not os.path.exists('books'):
+            os.mkdir('books')
         self.bookShelfPath = os.path.join(self.mainExePath, "books")
 
         self.searchLine = MySearch(self.db)

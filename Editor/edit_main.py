@@ -1,6 +1,5 @@
 import sys
-from Editor import editor
-import txetedit
+from Editor import editor, txetedit
 from PyQt5.QtCore import Qt
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QColorDialog, QFontDialog, QTextEdit, QFileDialog, QMessageBox

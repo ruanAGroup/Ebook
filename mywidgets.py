@@ -1,16 +1,17 @@
 import os
 import re
-from math import floor, ceil
+from math import ceil
 from PyQt5 import QtGui
-from PyQt5.QtCore import QSize, Qt, pyqtSignal, QAbstractItemModel, QStringListModel
-from PyQt5.QtGui import QFont, QIcon, QPixmap, QMouseEvent, QCursor
+from PyQt5.QtCore import QSize, Qt, pyqtSignal, QStringListModel
+from PyQt5.QtGui import QFont, QIcon, QPixmap, QCursor
 from PyQt5.QtWidgets import *
-from basic import strListToString, email_to
+from basic import strListToString
 from classes import Book
 from typing import List
 import heapq
 from mydatabase import MyDb
 from mydialogs import HighSearchDialog
+from search import searchBooks, highSearchBooks, searchByTag
 
 Books = List[Book]
 
@@ -222,29 +223,7 @@ class MyTree(QTreeWidget):
         books = self.db.getAllBooks()
         ITEM_TEXT = item.text(0)
         if item.parent():
-            if item.parent().text(0) == "作者":
-                books = [book for book in books if ITEM_TEXT in book.authors]
-            elif item.parent().text(0) == "书单":
-                books = [book for book in books if ITEM_TEXT in book.bookLists]
-            elif item.parent().text(0) == "标签":
-                books = [book for book in books if ITEM_TEXT in book.tags]
-            elif item.parent().text(0) == "语言":
-                books = [book for book in books if book.language == ITEM_TEXT]
-            elif item.parent().text(0) == "出版社":
-                books = [book for book in books if book.publisher == ITEM_TEXT]
-            else:  # 评分
-                if ITEM_TEXT == "5星":
-                    books = [book for book in books if book.rating == 5]
-                elif ITEM_TEXT == '4星':
-                    books = [book for book in books if book.rating == 4]
-                elif ITEM_TEXT == '3星':
-                    books = [book for book in books if book.rating == 3]
-                elif ITEM_TEXT == '2星':
-                    books = [book for book in books if book.rating == 2]
-                elif ITEM_TEXT == '1星':
-                    books = [book for book in books if book.rating == 1]
-                else:  # 尚未评分
-                    books = [book for book in books if book.rating == 0]
+            books = searchByTag(ITEM_TEXT, books, item)
         self.itemClickedSignal.emit(books)
 
 
@@ -535,48 +514,7 @@ class MySearch(QToolBar):
         if keyword:
             self.db.addAHistory(keyword)
             self.updateHistory()
-            if self.searchAttr == '按书名':
-                if self.searchAttrMode == '准确匹配':
-                    books = [book for book in books if book.name == keyword]
-                elif self.searchAttrMode == '模糊匹配':
-                    books = [book for book in books if keyword in book.name]
-                else:  # 正则匹配
-                    books = [book for book in books if re.match(keyword, book.name)]
-            elif self.searchAttr == '按作者':
-                if self.searchAttrMode == '准确匹配':
-                    books = [book for book in books if keyword in book.authors]
-                elif self.searchAttrMode == '模糊匹配':
-                    books = [book for book in books if book.hasAnthorFuzzy(keyword)]
-                else:  # 正则匹配
-                    books = [book for book in books if book.hasAuthorRegExp(keyword)]
-            elif self.searchAttr == '按书单':
-                if self.searchAttrMode == '准确匹配':
-                    books = [book for book in books if keyword in book.bookLists]
-                elif self.searchAttrMode == '模糊匹配':
-                    books = [book for book in books if book.inBooklistFuzzy(keyword)]
-                else:  # 正则匹配
-                    books = [book for book in books if book.inBooklistRegExp(keyword)]
-            elif self.searchAttr == '按标签':
-                if self.searchAttrMode == '准确匹配':
-                    books = [book for book in books if keyword in book.authors]
-                elif self.searchAttrMode == '模糊匹配':
-                    books = [book for book in books if book.hasTagFuzzy(keyword)]
-                else:  # 正则匹配
-                    books = [book for book in books if book.hasTagRegExp(keyword)]
-            elif self.searchAttr == '按出版社':
-                if self.searchAttrMode == '准确匹配':
-                    books = [book for book in books if book.publisher == keyword]
-                elif self.searchAttrMode == '模糊匹配':
-                    books = [book for book in books if keyword in book.publisher]
-                else:  # 正则匹配
-                    books = [book for book in books if re.match(keyword, book.publisher)]
-            else:  # 按ISBN
-                if self.searchAttrMode == '准确匹配':
-                    books = [book for book in books if book.isbn == keyword]
-                elif self.searchAttrMode == '模糊匹配':
-                    books = [book for book in books if keyword in book.isbn]
-                else:  # 正则匹配
-                    books = [book for book in books if re.match(keyword, book.isbn)]
+            books = searchBooks(self.searchAttr, self.searchAttrMode, books, keyword)
         self.updateBookViewSignal.emit(books)
 
     def onHighSearch(self):
@@ -586,16 +524,7 @@ class MySearch(QToolBar):
 
     def handleHigh(self, name, authors, press, booktag):  # 默认为模糊匹配
         books = self.db.getAllBooks()
-        if name:
-            books = [book for book in books if name in book.name]
-        if authors:
-            for author in authors:
-                books = [book for book in books if book.hasAnthorFuzzy(author)]
-        if press:
-            books = [book for book in books if press in book.publisher]
-        if booktag:
-            for tag in booktag:
-                books = [book for book in books if book.hasTagFuzzy(tag)]
+        books = highSearchBooks(authors, books, booktag, name, press)
         self.updateBookViewSignal.emit(books)
 
     def updateHistory(self):

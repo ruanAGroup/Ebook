@@ -5,22 +5,20 @@
 import json
 
 
-def dict_to_file(self, dictionary, filename):
+def dict_to_file(dictionary, filename):
     try:
         with open(filename, 'w') as f_obj:
             json.dump(dictionary, f_obj)
     except FileNotFoundError:
-        filename = input("文件不存在，请重新输入：")
-        self.dict_to_file(self, dictionary, filename)
+        return None
 
 
-def file_for_dict(self, filename):
+def file_for_dict(filename):
     try:
         with open(filename) as f_obj:
             dictionary = json.load(f_obj)
     except FileNotFoundError:
-        filename = input("文件不存在，请重新输入：")
-        self.file_for_dict(self, filename)
+        return None
     else:
         return dictionary
 

@@ -10,15 +10,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="合并高级搜索和设置部分">
-      <change afterPath="$PROJECT_DIR$/books/rs_1/Python核心编程.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/rs_1/cover.png" afterDir="false" />
+    <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="添加右键菜单（点击事件尚未完成），完成创建书单功能，修改项目目录">
+      <change afterPath="$PROJECT_DIR$/Editor/txetedit.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/Python编程从入门到实践_2/Python编程从入门到实践.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/Python编程从入门到实践_2/cover.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/info.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mydatabase.py" beforeDir="false" afterPath="$PROJECT_DIR$/mydatabase.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mydialogs.py" beforeDir="false" afterPath="$PROJECT_DIR$/mydialogs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Editor/edit_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Editor/edit_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Editor/editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Editor/editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mywidgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/mywidgets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/sort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/txetedit.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +70,35 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Python\ruanA\Editor" />
+      <recent name="F:\Python\ruanA\Demo\Editor" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.edit_main (1)">
+    <configuration name="edit_main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Demo" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Editor" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Editor/edit_main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="edit_main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Demo" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -135,6 +167,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.edit_main (1)" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.edit_main" />
         <item itemvalue="Python.test" />
@@ -188,7 +221,8 @@
       <workItem from="1603467960506" duration="1376000" />
       <workItem from="1603536930348" duration="1236000" />
       <workItem from="1603606029111" duration="1613000" />
-      <workItem from="1603707658358" duration="4959000" />
+      <workItem from="1603707658358" duration="6167000" />
+      <workItem from="1603768582248" duration="4668000" />
     </task>
     <task id="LOCAL-00001" summary="try">
       <created>1599913602844</created>
@@ -323,7 +357,21 @@
       <option name="project" value="LOCAL" />
       <updated>1603718594395</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="添加右键菜单（点击事件尚未完成），完成创建书单功能">
+      <created>1603722023452</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1603722023452</updated>
+    </task>
+    <task id="LOCAL-00021" summary="添加右键菜单（点击事件尚未完成），完成创建书单功能，修改项目目录">
+      <created>1603722233187</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1603722233187</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,7 +416,9 @@
     <MESSAGE value="修复上次提交小问题" />
     <MESSAGE value="合并高级搜索和设置模块" />
     <MESSAGE value="合并高级搜索和设置部分" />
-    <option name="LAST_COMMIT_MESSAGE" value="合并高级搜索和设置部分" />
+    <MESSAGE value="添加右键菜单（点击事件尚未完成），完成创建书单功能" />
+    <MESSAGE value="添加右键菜单（点击事件尚未完成），完成创建书单功能，修改项目目录" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加右键菜单（点击事件尚未完成），完成创建书单功能，修改项目目录" />
   </component>
   <component name="WindowStateProjectService">
     <state x="109" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600414011644">
@@ -379,10 +429,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="481" y="141" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1600414046857" />
-    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603718586989">
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603722200195">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1603718586989" />
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1603722200195" />
+    <state x="410" y="104" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog" timestamp="1603779420791">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="410" y="104" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog/0.0.1280.680@0.0.1280.680" timestamp="1603779420791" />
     <state x="331" y="0" key="CommitChangelistDialog2" timestamp="1600740112045">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -395,38 +449,38 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="723" y="102" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1603718470853" />
-    <state width="1237" height="332" key="GridCell.Tab.0.bottom" timestamp="1603721573920">
+    <state width="1237" height="175" key="GridCell.Tab.0.bottom" timestamp="1603779822210">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="332" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603721573920" />
-    <state width="1237" height="332" key="GridCell.Tab.0.center" timestamp="1603721573919">
+    <state width="1237" height="175" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603779822210" />
+    <state width="1237" height="175" key="GridCell.Tab.0.center" timestamp="1603779822210">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="332" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1603721573919" />
-    <state width="1237" height="332" key="GridCell.Tab.0.left" timestamp="1603721573919">
+    <state width="1237" height="175" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1603779822210" />
+    <state width="1237" height="175" key="GridCell.Tab.0.left" timestamp="1603779822210">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="332" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1603721573919" />
-    <state width="1237" height="332" key="GridCell.Tab.0.right" timestamp="1603721573919">
+    <state width="1237" height="175" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1603779822210" />
+    <state width="1237" height="175" key="GridCell.Tab.0.right" timestamp="1603779822210">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="332" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1603721573919" />
-    <state width="1237" height="332" key="GridCell.Tab.1.bottom" timestamp="1603721573924">
+    <state width="1237" height="175" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1603779822210" />
+    <state width="1237" height="332" key="GridCell.Tab.1.bottom" timestamp="1603723182373">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="332" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603721573924" />
-    <state width="1237" height="332" key="GridCell.Tab.1.center" timestamp="1603721573922">
+    <state width="1237" height="332" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603723182373" />
+    <state width="1237" height="332" key="GridCell.Tab.1.center" timestamp="1603723182372">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="332" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1603721573922" />
-    <state width="1237" height="332" key="GridCell.Tab.1.left" timestamp="1603721573921">
+    <state width="1237" height="332" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1603723182372" />
+    <state width="1237" height="332" key="GridCell.Tab.1.left" timestamp="1603723182372">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="332" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1603721573921" />
-    <state width="1237" height="332" key="GridCell.Tab.1.right" timestamp="1603721573924">
+    <state width="1237" height="332" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1603723182372" />
+    <state width="1237" height="332" key="GridCell.Tab.1.right" timestamp="1603723182372">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="332" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1603721573924" />
+    <state width="1237" height="332" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1603723182372" />
     <state x="121" y="51" key="MergeDialog" timestamp="1603707699380">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -439,26 +493,42 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1603606515535" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1603718595595">
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1603722287605">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1603718595595" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1603722287605" />
     <state x="240" y="46" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1600736672109">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="240" y="46" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1280.680@0.0.1280.680" timestamp="1600736672109" />
-    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603707674241">
+    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603768655061">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1603707674241" />
+    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1603768655061" />
+    <state x="484" y="125" key="refactoring.ChangeSignatureDialog" timestamp="1603778150686">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="484" y="125" key="refactoring.ChangeSignatureDialog/0.0.1280.680@0.0.1280.680" timestamp="1603778150686" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1600738588990">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1600738588990" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mywidgets.py</url>
+          <line>510</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Demo$test.coverage" NAME="test Coverage Results" MODIFIED="1601514068190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Demo$edit_main__1_.coverage" NAME="edit_main (1) Coverage Results" MODIFIED="1603779807506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Editor" />
     <SUITE FILE_PATH="coverage/Demo$edit_main.coverage" NAME="edit_main Coverage Results" MODIFIED="1603156530212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Demo$main.coverage" NAME="main Coverage Results" MODIFIED="1603721279052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Demo$main.coverage" NAME="main Coverage Results" MODIFIED="1603778459517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
