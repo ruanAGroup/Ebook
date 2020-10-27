@@ -9,6 +9,7 @@ from classes import Book
 from mydatabase import MyDb
 from mythreads import convertThread
 from fileMethods import *
+from share import example
 
 
 class MyComboBox(QComboBox):
@@ -408,7 +409,8 @@ class changeCoverDialog(QDialog):
             self.coverLabel.setPixmap(QPixmap(filename).scaled(365, 458))
 
     def onGenerateCover(self):
-        pass
+        img = example()
+        self.coverLabel.setPixmap(QPixmap().fromImage(img).scaled(365, 458))
 
     def onOK(self):
         pic = self.coverLabel.pixmap()
@@ -452,7 +454,8 @@ class shareByPicDialog(QDialog):
         self.copySignal.emit()
 
     def generatePic(self):
-        self.picLabel.setPixmap(QPixmap())
+        img = example()
+        self.picLabel.setPixmap(QPixmap().fromImage(img).scaled(365, 458))
 
     def onCancle(self):
         self.close()
