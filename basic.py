@@ -77,6 +77,11 @@ def setClipText(text):
     clip.setText(text)
 
 
+def setClipPic(pic):
+    clip = QApplication.clipboard()
+    clip.setPixmap(pic)
+
+
 def email_to(file_path, address):
     smtp_server = 'smtp.qq.com'
     from_address = '2587354021@qq.com'

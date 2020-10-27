@@ -130,15 +130,15 @@ class MyToolBar(QToolBar):
 
     def setTSize(self, TSize):
         if TSize == "小":
-            self.setMinimumSize(QSize(100, 100))
+            # self.setMinimumSize(QSize(100, 100))
             self.setIconSize(QSize(50, 50))
             self.setFont(QFont("", 13))
         elif TSize == '中':
-            self.setMinimumSize(QSize(150, 150))
+            # self.setMinimumSize(QSize(150, 150))
             self.setIconSize(QSize(70, 70))
             self.setFont(QFont("", 14))
         else:
-            self.setMinimumSize(QSize(200, 200))
+            # self.setMinimumSize(QSize(200, 200))
             self.setIconSize(QSize(100, 100))
             self.setFont(QFont("", 15))
 
@@ -275,6 +275,7 @@ class MenuLabel(QLabel):
     sendKindleSignal = pyqtSignal(str)
     addTagSignal = pyqtSignal(str)
     addToBooklistSignal = pyqtSignal(str)
+    changeCoverSignal = pyqtSignal()
 
     def __init__(self, db, bookID, *args):
         super(MenuLabel, self).__init__(*args)
@@ -283,7 +284,9 @@ class MenuLabel(QLabel):
         self.menu = QMenu()
         editData = QAction("编辑元数据", self.menu)
         editData.triggered.connect(self.onEditData)
-        self.menu.addActions([editData, ])
+        changeCover = QAction("更换封面", self.menu)
+        changeCover.triggered.connect(self.onChangeCover)
+        self.menu.addActions([editData, changeCover])
         self.addTag = self.menu.addMenu("添加标签")
         self.addToBookList = self.menu.addMenu("添加到书单")
         self.sendToKindle = self.menu.addMenu("发送到Kindle")
@@ -295,6 +298,9 @@ class MenuLabel(QLabel):
         # addToBookList = QAction("添加到书单", self.menu)
         self.setContextMenuPolicy(Qt.CustomContextMenu)
         self.customContextMenuRequested.connect(self.showContextMenu)
+
+    def onChangeCover(self):
+        self.changeCoverSignal.emit()
 
     def onAddTag(self, action):
         self.addTagSignal.emit(action.text())
@@ -368,6 +374,7 @@ class MyGrid(QGridLayout):
     sendToKindleSignal = pyqtSignal(str)
     addTagSignal = pyqtSignal(str)
     addToBooklistSignal = pyqtSignal(str)
+    changeCoverSignal = pyqtSignal()
 
     def __init__(self, parent, scro, db):
         super(MyGrid, self).__init__(parent)
@@ -392,6 +399,7 @@ class MyGrid(QGridLayout):
         tempWid = QWidget()
         for point, book in zip(points, books):
             tempLabel = MenuLabel(self.db, book.ID)
+            tempLabel.changeCoverSignal.connect(self.onChangeCover)
             tempLabel.addTagSignal.connect(self.onAddTag)
             tempLabel.addToBooklistSignal.connect(self.onAddToBooklist)
             tempLabel.sendKindleSignal.connect(self.onToKindle)
@@ -406,6 +414,9 @@ class MyGrid(QGridLayout):
         tempWid.setLayout(self)
         self.scrollarea.setWidget(tempWid)
         self.father = tempWid
+
+    def onChangeCover(self):
+        self.changeCoverSignal.emit()
 
     def onAddTag(self, tag):
         self.addTagSignal.emit(tag)

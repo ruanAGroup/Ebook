@@ -1,10 +1,10 @@
 import time
 
 from PyQt5 import QtGui
-from PyQt5.QtGui import QIntValidator, QFont
+from PyQt5.QtGui import QIntValidator, QFont, QPixmap
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QDate, pyqtSignal, QStringListModel, QSize, Qt
-from basic import strListToString
+from basic import strListToString, setClipPic, CtrlAltZ
 from classes import Book
 from mydatabase import MyDb
 from mythreads import convertThread
@@ -373,3 +373,86 @@ class CreateBookListDialog(QDialog):
     def onCancle(self):
         self.close()
 
+
+class changeCoverDialog(QDialog):
+    coverChangeSignal = pyqtSignal(QPixmap)
+
+    def __init__(self, book, parent=None):
+        super(changeCoverDialog, self).__init__(parent)
+        self.book = book
+        self.coverLabel = QLabel()
+        self.coverLabel.setPixmap(QPixmap(book.cover_path).scaled(365, 458))
+        self.choseFileBtn = QPushButton("选择图片")
+        self.generateCoverBtn = QPushButton("生成封面")
+        self.okBtn = QPushButton("确定")
+        self.cancleBtn = QPushButton("取消")
+        vbox = QVBoxLayout()
+        hbox = QHBoxLayout()
+        hbox.addWidget(self.okBtn)
+        hbox.addWidget(self.cancleBtn)
+        vbox.addWidget(self.coverLabel)
+        vbox.addWidget(self.choseFileBtn)
+        vbox.addWidget(self.generateCoverBtn)
+        tempWidget = QWidget()
+        tempWidget.setLayout(hbox)
+        vbox.addWidget(tempWidget)
+        self.setLayout(vbox)
+        self.choseFileBtn.clicked.connect(self.onChoseFile)
+        self.generateCoverBtn.clicked.connect(self.onGenerateCover)
+        self.okBtn.clicked.connect(self.onOK)
+        self.cancleBtn.clicked.connect(self.onCancle)
+
+    def onChoseFile(self):
+        filename, _ = QFileDialog.getOpenFileName(self, "选择封面图片", ".", "image files(*.png *.jpg *.jpeg *.bmp)")
+        if filename:
+            self.coverLabel.setPixmap(QPixmap(filename).scaled(365, 458))
+
+    def onGenerateCover(self):
+        pass
+
+    def onOK(self):
+        pic = self.coverLabel.pixmap()
+        self.coverChangeSignal.emit(pic)
+        self.close()
+
+    def onCancle(self):
+        self.close()
+
+
+class shareByPicDialog(QDialog):
+    copySignal = pyqtSignal()
+
+    def __init__(self, book, parent=None):
+        super(shareByPicDialog, self).__init__(parent)
+        self.picLabel = QLabel()
+        self.book = book
+        # 下面一行为测试代码
+        self.picLabel.setPixmap(QPixmap(self.book.cover_path).scaled(365, 458))
+
+        self.refresh = QPushButton("刷新")
+        self.copyBtn = QPushButton("复制")
+        self.cancleBtn = QPushButton("返回")
+        self.refresh.clicked.connect(self.generatePic)
+        self.copyBtn.clicked.connect(self.copyPic)
+        self.cancleBtn.clicked.connect(self.onCancle)
+        vbox = QVBoxLayout()
+        hbox = QHBoxLayout()
+        hbox.addWidget(self.copyBtn)
+        hbox.addWidget(self.cancleBtn)
+        tempWidget = QWidget()
+        tempWidget.setLayout(hbox)
+        vbox.addWidget(self.picLabel)
+        vbox.addWidget(self.refresh)
+        vbox.addWidget(tempWidget)
+        self.setLayout(vbox)
+
+    def copyPic(self):
+        pic = self.picLabel.pixmap()
+        setClipPic(pic)
+        self.copySignal.emit()
+
+    def generatePic(self):
+        self.picLabel.setPixmap(QPixmap())
+
+    def onCancle(self):
+        self.close()

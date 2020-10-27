@@ -1,6 +1,5 @@
 # 此文件存储排序、分类相关算法
 
-
 def sortByName(books):
     num = len(books)
     for i in range(num):

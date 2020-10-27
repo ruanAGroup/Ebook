@@ -87,6 +87,7 @@ class BookManager(QMainWindow):
         self.booksView.sendToKindleSignal.connect(self.sendMail)
         self.booksView.addTagSignal.connect(self.addTag)
         self.booksView.addToBooklistSignal.connect(self.addBookListByBooksView)
+        self.booksView.changeCoverSignal.connect(self.onChangeCover)
 
     def generateToolBar(self):
         self.toolbar.addbook.triggered.connect(self.addBook)
@@ -126,7 +127,10 @@ class BookManager(QMainWindow):
         self.searchLine.changeAttr(self.searchLine.searchAttr)
 
     def getCurrentBook(self):
-        return self.db.getBookByID(self.booksView.dict[self.booksView.lastActive])
+        if self.booksView.lastActive:
+            return self.db.getBookByID(self.booksView.dict[self.booksView.lastActive])
+        else:
+            return None
 
     def addTag(self, tag):
         book = self.getCurrentBook()
@@ -206,6 +210,18 @@ class BookManager(QMainWindow):
             dig.changeSignal.connect(self.onDataChanged)
             dig.show()
 
+    def onChangeCover(self):
+        book = self.getCurrentBook()
+        dig = changeCoverDialog(book, self)
+        dig.coverChangeSignal.connect(self.changeCover)
+        dig.show()
+
+    def changeCover(self, pic: QPixmap):
+        book = self.getCurrentBook()
+        pic.save(book.cover_path)
+        self.infoView.updateView(book)
+        self.booksView.updateView(self.curShowBooks)
+
     def onDataChanged(self, ID):
         self.updateTreeView()
         self.updateInfo(ID)
@@ -254,9 +270,6 @@ class BookManager(QMainWindow):
                 self.toolbar.sortBtn.setIcon(QIcon(os.path.join(self.mainExePath, 'img/sortDown.png')))
                 self.curShowBooks = books
         self.booksView.updateView(self.curShowBooks)
-
-    # def HighSort(self):
-    #     pass
 
     def readBook(self):
         if self.booksView.lastActive:
@@ -366,8 +379,6 @@ class BookManager(QMainWindow):
         if ret == QMessageBox.Yes:
             os.startfile(filename)
 
-    # def share(self):
-    #     pass
     def sendMail(self, mail):
         if not self.db.mailInDB(mail):
             self.db.addKindleMail(mail)
@@ -396,7 +407,14 @@ class BookManager(QMainWindow):
             CtrlAltZ()
 
     def toQQByPic(self):
-        pass
+        if self.booksView.lastActive:
+            book = self.getCurrentBook()
+            dig = shareByPicDialog(book, self)
+            dig.copySignal.connect(self.qqPicCopied)
+            dig.show()
+
+    def qqPicCopied(self):
+        CtrlAltZ()
 
     def toWeChatByFile(self):
         if self.booksView.lastActive:
@@ -406,13 +424,17 @@ class BookManager(QMainWindow):
             CtrlAltW()
 
     def toWeChatByPic(self):
-        pass
+        if self.booksView.lastActive:
+            book = self.getCurrentBook()
+            dig = shareByPicDialog(book, self)
+            dig.copySignal.connect(self.wechatPicCopied)
+            dig.show()
+
+    def wechatPicCopied(self):
+        CtrlAltW()
 
     def giveusStar(self):
-        QDesktopServices.openUrl(QUrl('https://github.com/zhj12138/ebook-manager'))
-
-    # def getHelp(self):
-    #     pass
+        QDesktopServices.openUrl(QUrl('https://github.com/ruanAGroup/E-bookLibrary'))
 
     def setSetting(self):
         dig = SettingDialog(self)
@@ -435,6 +457,10 @@ class BookManager(QMainWindow):
         self.toolbar.setTSize(self.setting['toolbarSize'])
         self.treeView.setTSize(self.setting['treeSize'])
         self.infoView.setTSize(self.setting['bookInfoSize'])
+        book = self.getCurrentBook()
+        if not book:
+            book = Book()
+        self.infoView.updateView(book)
         storeSetting(self.setting, self.setting_filename)
 
     def setSearch(self):
