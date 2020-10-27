@@ -1,15 +1,21 @@
 # 此文件为UI程序
+from functools import partial
+
 from PyQt5.QtGui import *
 from mywidgets import *
 from mydialogs import *
 from mythreads import *
 from basic import *
+from settings import storeSetting
 
 
 class BookManager(QMainWindow):
-    def __init__(self):
+    def __init__(self, setting, setting_filename):
         super(BookManager, self).__init__()
+        self.setting_filename = setting_filename
+        self.setting = setting
         self.toolbar = MyToolBar()
+        self.toolbar.setTSize(self.setting["toolbarSize"])
         self.addToolBar(self.toolbar)
         self.generateToolBar()
 
@@ -20,7 +26,9 @@ class BookManager(QMainWindow):
         self.bookShelfPath = os.path.join(self.mainExePath, "books")
 
         self.searchLine = MySearch(self.db)
+        self.setSearch()
         self.treeView = MyTree(self.db)
+        self.treeView.setTSize(self.setting['treeSize'])
         self.treeView.itemClickedSignal.connect(self.onTreeItemClicked)
         self.treeView.setMaximumWidth(1000)
         self.treeView.setMinimumWidth(200)
@@ -28,15 +36,11 @@ class BookManager(QMainWindow):
         tempwidget = QWidget()
         # tempwidget.setStyleSheet("QLabel{border:2px solid red;}")
         self.booksView = MyGrid(tempwidget, self.scrollarea, self.db)
-        self.booksView.itemClicked.connect(self.updateInfo)
+        self.generateBookView()
         tempinfo = QWidget()
         # tempinfo.setMinimumWidth(0)
-        self.infoView = MyList(tempinfo)
-        # self.infoView.setMaximumWidth(700)
-        # self.infoView.setMinimumWidth(200)
+        self.infoView = MyList(tempinfo, self.setting['bookInfoSize'])
 
-        # self.scrollarea.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
-        # self.scrollarea.setSizePolicy()
         self.scrollarea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.scrollarea.setMinimumWidth(1190)
         self.scrollarea.setMaximumWidth(1800)
@@ -77,6 +81,13 @@ class BookManager(QMainWindow):
         self.setGeometry(rect)
         self.show()
 
+    def generateBookView(self):
+        self.booksView.itemClicked.connect(self.updateInfo)
+        self.booksView.editDataSignal.connect(self.editBook)
+        self.booksView.sendToKindleSignal.connect(self.sendMail)
+        self.booksView.addTagSignal.connect(self.addTag)
+        self.booksView.addToBooklistSignal.connect(self.addBookListByBooksView)
+
     def generateToolBar(self):
         self.toolbar.addbook.triggered.connect(self.addBook)
         self.toolbar.inbook.triggered.connect(self.inBook)
@@ -102,6 +113,24 @@ class BookManager(QMainWindow):
         self.toolbar.setting.triggered.connect(self.setSetting)
         self.toolbar.sortModeChangedSignal.connect(self.sortBooks)
         self.toolbar.sendBackMail.connect(self.sendMail)
+
+    def addBookListByBooksView(self, booklistname):
+        book = self.getCurrentBook()
+        book.addToList(self.db, booklistname)
+        book.updateDB(self.db)
+        self.updateTreeView()
+        if self.booksView.lastActive:
+            self.updateInfo(self.booksView.dict[self.booksView.lastActive])
+        self.searchLine.changeAttr(self.searchLine.searchAttr)
+
+    def getCurrentBook(self):
+        return self.db.getBookByID(self.booksView.dict[self.booksView.lastActive])
+
+    def addTag(self, tag):
+        book = self.getCurrentBook()
+        book.tags.append(tag)
+        book.updateDB(self.db)
+        self.updateInfo(self.booksView.dict[self.booksView.lastActive])
 
     def addBook(self):
         os.chdir(self.mainExePath)
@@ -149,9 +178,6 @@ class BookManager(QMainWindow):
     def onTreeItemClicked(self, books):
         self.curShowBooks = books
         self.booksView.updateView(books)
-    # def resizeUpdate(self, ev):
-    #     if self.scrollarea.size().width() > 1500:
-    #         self.booksView.updateView(self.curShowBooks)
 
     def inBook(self):
         dig = ImportFileDialog(self.bookShelfPath, self.db, self)
@@ -174,7 +200,7 @@ class BookManager(QMainWindow):
     def editBook(self):
         if not self.booksView.lastActive:
             return
-        book = self.db.getBookByID(self.booksView.dict[self.booksView.lastActive])
+        book = self.getCurrentBook()
         if book:
             dig = EditDataDialog(self.db, book, self)
             dig.changeSignal.connect(self.onDataChanged)
@@ -234,14 +260,14 @@ class BookManager(QMainWindow):
 
     def readBook(self):
         if self.booksView.lastActive:
-            book = self.db.getBookByID(self.booksView.dict[self.booksView.lastActive])
+            book = self.getCurrentBook()
             os.startfile(book.file_path)
 
     def outAsTxt(self):
         if self.booksView.lastActive:
             saveFileName, _ = QFileDialog.getSaveFileName(self, "保存文件", ".", "txt file(*.txt)")
             if saveFileName:
-                book = self.db.getBookByID(self.booksView.dict[self.booksView.lastActive])
+                book = self.getCurrentBook()
                 t = convertThread(pdfToHtmlorTxt, (book.file_path, saveFileName, "text"))
                 t.finishSignal.connect(lambda: self.onFinishOut(saveFileName))
                 t.start()
@@ -251,7 +277,7 @@ class BookManager(QMainWindow):
         if self.booksView.lastActive:
             saveFileName, _ = QFileDialog.getSaveFileName(self, "保存文件", ".", "html file(*.html)")
             if saveFileName:
-                book = self.db.getBookByID(self.booksView.dict[self.booksView.lastActive])
+                book = self.getCurrentBook()
                 t = convertThread(pdfToHtmlorTxt, (book.file_path, saveFileName, "html"))
                 t.finishSignal.connect(lambda: self.onFinishOut(saveFileName))
                 t.start()
@@ -261,7 +287,7 @@ class BookManager(QMainWindow):
         if self.booksView.lastActive:
             saveFileName, _ = QFileDialog.getSaveFileName(self, "保存文件", ".", "docx file(*.docx)")
             if saveFileName:
-                book = self.db.getBookByID(self.booksView.dict[self.booksView.lastActive])
+                book = self.getCurrentBook()
                 t = convertThread(pdfToDocx, (book.file_path, saveFileName))
                 t.finishSignal.connect(lambda: self.onFinishOut(saveFileName))
                 t.start()
@@ -274,7 +300,7 @@ class BookManager(QMainWindow):
 
     def deleteBook(self):
         if self.booksView.lastActive:
-            book = self.db.getBookByID(self.booksView.dict[self.booksView.lastActive])
+            book = self.getCurrentBook()
             book.delete(self.db)
             self.updateTreeView()
             self.curShowBooks = self.db.getAllBooks()
@@ -328,7 +354,7 @@ class BookManager(QMainWindow):
         if not self.booksView.lastActive:
             QMessageBox.about(self, "提醒", "请先选中一本书")
             return
-        book = self.db.getBookByID(self.booksView.dict[self.booksView.lastActive])
+        book = self.getCurrentBook()
         t = EmailThread(email_to, (book.file_path, mail))
         t.finishSignal.connect(self.finish_mail)
         t.start()
@@ -342,7 +368,7 @@ class BookManager(QMainWindow):
 
     def toQQByFile(self):
         if self.booksView.lastActive:
-            book = self.db.getBookByID(self.booksView.dict[self.booksView.lastActive])
+            book = self.getCurrentBook()
             copyFile(book.file_path)
             QMessageBox.about(self, "提示", "文件已复制到剪贴板")
             CtrlAltZ()
@@ -352,7 +378,7 @@ class BookManager(QMainWindow):
 
     def toWeChatByFile(self):
         if self.booksView.lastActive:
-            book = self.db.getBookByID(self.booksView.dict[self.booksView.lastActive])
+            book = self.getCurrentBook()
             copyFile(book.file_path)
             QMessageBox.about(self, "提示", "文件已复制到剪贴板")
             CtrlAltW()
@@ -367,10 +393,30 @@ class BookManager(QMainWindow):
     #     pass
 
     def setSetting(self):
-        setting = Setting(self)
-        setting.finishSignal.connect(self.onReset)
-        setting.show()
+        dig = SettingDialog(self)
+        dig.setInitial(self.setting)
+        dig.finishSignal.connect(self.onReset)
+        dig.show()
 
-    def onReset(self, sortMode, SearchMode, c, d, e):
-        print(sortMode, SearchMode, c, d, e)
+    def onReset(self, toolbarSize, treeSize, bookInfoSize, searchAttr, searchMode):
+        if toolbarSize:
+            self.setting['toolbarSize'] = toolbarSize
+        if treeSize:
+            self.setting['treeSize'] = treeSize
+        if bookInfoSize:
+            self.setting['bookInfoSize'] = bookInfoSize
+        if searchAttr:
+            self.setting['searchAttr'] = searchAttr
+        if searchMode:
+            self.setting['searchMode'] = searchMode
+        self.setSearch()
+        self.toolbar.setTSize(self.setting['toolbarSize'])
+        self.treeView.setTSize(self.setting['treeSize'])
+        self.infoView.setTSize(self.setting['bookInfoSize'])
+        storeSetting(self.setting, self.setting_filename)
+
+    def setSearch(self):
+        self.searchLine.changeAttr(self.setting['searchAttr'])
+        self.searchLine.changeAttrMode(self.setting['searchMode'])
+
 

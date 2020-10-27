@@ -265,11 +265,11 @@ class HighSearchDialog(QDialog):
         self.close()
         
         
-class Setting(QDialog):
+class SettingDialog(QDialog):
     finishSignal = pyqtSignal(str, str, str, str, str)
 
     def __init__(self, parent=None):
-        super(Setting, self).__init__(parent)
+        super(SettingDialog, self).__init__(parent)
 
         self.toolbarLabel = QLabel('工具栏图标大小：')
         self.toolbarComboBox = QComboBox(self)
@@ -335,6 +335,13 @@ class Setting(QDialog):
 
     def cancle_Clicked(self):
         self.close()
+
+    def setInitial(self, setting):
+        self.toolbarComboBox.setCurrentText(setting['toolbarSize'])
+        self.navigationComboBox.setCurrentText(setting['treeSize'])
+        self.book_infoComboBox.setCurrentText(setting['bookInfoSize'])
+        self.searchComboBox.setCurrentText(setting['searchAttr'])
+        self.searchModeComboBox.setCurrentText(setting['searchMode'])
 
 
 class CreateBookListDialog(QDialog):

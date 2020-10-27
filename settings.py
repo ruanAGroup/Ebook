@@ -5,7 +5,7 @@
 import json
 
 
-def dict_to_file(dictionary, filename):
+def storeSetting(dictionary, filename):
     try:
         with open(filename, 'w') as f_obj:
             json.dump(dictionary, f_obj)
@@ -13,7 +13,7 @@ def dict_to_file(dictionary, filename):
         return None
 
 
-def file_for_dict(filename):
+def readSetting(filename):
     try:
         with open(filename) as f_obj:
             dictionary = json.load(f_obj)

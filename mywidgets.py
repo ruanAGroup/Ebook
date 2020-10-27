@@ -22,9 +22,6 @@ class MyToolBar(QToolBar):
 
     def __init__(self):
         super(MyToolBar, self).__init__()
-        self.setMinimumSize(QSize(200, 200))
-        self.setIconSize(QSize(100, 100))
-        self.setFont(QFont("", 15))
         self.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
         self.addbook = QAction(QIcon('img/add-2.png'), "添加书籍", self)
         self.inbook = QAction(QIcon('img/import-6.png'), "导入文件", self)
@@ -117,6 +114,20 @@ class MyToolBar(QToolBar):
         self.addSeparator()
         self.addActions([self.setting])
 
+    def setTSize(self, TSize):
+        if TSize == "小":
+            self.setMinimumSize(QSize(100, 100))
+            self.setIconSize(QSize(50, 50))
+            self.setFont(QFont("", 13))
+        elif TSize == '中':
+            self.setMinimumSize(QSize(150, 150))
+            self.setIconSize(QSize(70, 70))
+            self.setFont(QFont("", 14))
+        else:
+            self.setMinimumSize(QSize(200, 200))
+            self.setIconSize(QSize(100, 100))
+            self.setFont(QFont("", 15))
+
     def changeSortMode(self, attr: str):
         self.sortMode = attr
         self.sortModeChangedSignal.emit()
@@ -155,8 +166,6 @@ class MyTree(QTreeWidget):
         self.db = db
         self.setColumnCount(1)
         self.setHeaderHidden(True)
-        self.setFont(QFont("", 15))
-        self.setIconSize(QSize(50, 50))
         self.authors = QTreeWidgetItem(self)
         self.authors.setText(0, "作者")
         self.authors.setIcon(0, QIcon('img/author-1.png'))
@@ -188,6 +197,17 @@ class MyTree(QTreeWidget):
         self.noScore = QTreeWidgetItem(self.rating)
         self.noScore.setText(0, "尚未评分")
         self.itemClicked.connect(self.onItemClicked)
+
+    def setTSize(self, TSize):
+        if TSize == "小":
+            self.setFont(QFont("", 13))
+            self.setIconSize(QSize(30, 30))
+        elif TSize == '中':
+            self.setFont(QFont("", 14))
+            self.setIconSize(QSize(40, 40))
+        else:
+            self.setFont(QFont("", 15))
+            self.setIconSize(QSize(50, 50))
 
     def updateAuthors(self, author_list):
         self.authors.takeChildren()
@@ -238,11 +258,14 @@ class MyLabel(QLabel):
 class MenuLabel(QLabel):
     clicked = pyqtSignal()
     editDataSignal = pyqtSignal()
+    sendKindleSignal = pyqtSignal(str)
+    addTagSignal = pyqtSignal(str)
+    addToBooklistSignal = pyqtSignal(str)
 
-    def __init__(self, db, book, *args):
+    def __init__(self, db, bookID, *args):
         super(MenuLabel, self).__init__(*args)
         self.db = db
-        self.book = book
+        self.bookID = bookID
         self.menu = QMenu()
         editData = QAction("编辑元数据", self.menu)
         editData.triggered.connect(self.onEditData)
@@ -250,14 +273,42 @@ class MenuLabel(QLabel):
         self.addTag = self.menu.addMenu("添加标签")
         self.addToBookList = self.menu.addMenu("添加到书单")
         self.sendToKindle = self.menu.addMenu("发送到Kindle")
+        self.inputEmail = QAction("添加Kindle邮箱", self)
+        self.inputEmail.triggered.connect(self.inputMail)
+        self.sendToKindle.triggered.connect(self.onSendKindle)
+        self.addTag.triggered.connect(self.onAddTag)
+        self.addToBookList.triggered.connect(self.onAddToBooklist)
         # addToBookList = QAction("添加到书单", self.menu)
         self.setContextMenuPolicy(Qt.CustomContextMenu)
         self.customContextMenuRequested.connect(self.showContextMenu)
 
+    def onAddTag(self, action):
+        self.addTagSignal.emit(action.text())
+
+    def onAddToBooklist(self, action):
+        self.addToBooklistSignal.emit(action.text())
+
+    def inputMail(self):
+        mail, ok = QInputDialog.getText(QInputDialog(), "输入邮箱", "请输入邮箱")
+        if ok:
+            pat = re.compile(r'^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$')
+            if pat.match(mail):
+                self.sendMail(mail)
+            else:
+                QMessageBox.about(self, "提醒", "请输入合法邮箱")
+
+    def sendMail(self, mail):
+        self.sendKindleSignal.emit(mail)
+
+    def onSendKindle(self, action):
+        if action.text() != '添加Kindle邮箱':
+            self.sendMail(action.text())
+
     def generateAddTagMenu(self):
         self.addTag.clear()
         tags = self.db.getAllTags()
-        tags -= set(self.book.tags)
+        book = self.db.getBookByID(self.bookID)
+        tags -= set(book.tags)
         for tag in tags:
             action = QAction(tag, self)
             self.addTag.addAction(action)
@@ -265,13 +316,15 @@ class MenuLabel(QLabel):
     def generateAddToBookListMenu(self):
         self.addToBookList.clear()
         booklists = {booklist.name for booklist in self.db.getAllBookLists()}
-        booklists -= set(self.book.bookLists)
+        book = self.db.getBookByID(self.bookID)
+        booklists -= set(book.bookLists)
         for booklist in booklists:
             action = QAction(booklist, self)
             self.addToBookList.addAction(action)
 
     def generateSendToKindleMenu(self):
         self.sendToKindle.clear()
+        self.sendToKindle.addAction(self.inputEmail)
         mails = self.db.getAllKindleMail()
         for mail in mails:
             action = QAction(mail, self)
@@ -297,6 +350,10 @@ class MenuLabel(QLabel):
 
 class MyGrid(QGridLayout):
     itemClicked = pyqtSignal(int)
+    editDataSignal = pyqtSignal()
+    sendToKindleSignal = pyqtSignal(str)
+    addTagSignal = pyqtSignal(str)
+    addToBooklistSignal = pyqtSignal(str)
 
     def __init__(self, parent, scro, db):
         super(MyGrid, self).__init__(parent)
@@ -320,7 +377,11 @@ class MyGrid(QGridLayout):
         points = [(i, j) for i in range(rows) for j in range(cols)]
         tempWid = QWidget()
         for point, book in zip(points, books):
-            tempLabel = MenuLabel(self.db, book)
+            tempLabel = MenuLabel(self.db, book.ID)
+            tempLabel.addTagSignal.connect(self.onAddTag)
+            tempLabel.addToBooklistSignal.connect(self.onAddToBooklist)
+            tempLabel.sendKindleSignal.connect(self.onToKindle)
+            tempLabel.editDataSignal.connect(self.onEditData)
             tempLabel.setPixmap(QPixmap(book.cover_path).scaled(self.itemWidth, self.itemHeight))
             tempLabel.setScaledContents(True)
             if book.name:
@@ -331,6 +392,18 @@ class MyGrid(QGridLayout):
         tempWid.setLayout(self)
         self.scrollarea.setWidget(tempWid)
         self.father = tempWid
+
+    def onAddTag(self, tag):
+        self.addTagSignal.emit(tag)
+
+    def onToKindle(self, address):
+        self.sendToKindleSignal.emit(address)
+
+    def onAddToBooklist(self, name):
+        self.addToBooklistSignal.emit(name)
+
+    def onEditData(self):
+        self.editDataSignal.emit()
 
     def deleteAll(self):
         while self.count():
@@ -348,8 +421,9 @@ class MyGrid(QGridLayout):
 
 
 class MyList(QVBoxLayout):
-    def __init__(self, father):
+    def __init__(self, father, TSize):
         super(MyList, self).__init__(father)
+        self.TSize = TSize
         self.father = father
         self.picLabel = QLabel()
         self.picLabel.setPixmap(QPixmap('img/default-pic.png').scaled(365, 458))
@@ -377,26 +451,23 @@ class MyList(QVBoxLayout):
 
         self.addWidget(self.picLabel)
         temwidget = QWidget()
-        temwidget.setFont(QFont("", 14))
+        temwidget.setFont(QFont("", self.getSize()))
         temwidget.setLayout(self.form)
         self.scrollarea = QScrollArea()
         self.scrollarea.setFrameShape(QFrame.NoFrame)
         self.scrollarea.setWidget(temwidget)
         self.addWidget(self.scrollarea)
 
-    def setDefault(self):
-        self.picLabel.setPixmap(QPixmap('img/default-pic.png').scaled(365, 458))
-        self.name = QLabel("未知")
-        self.authors = QLabel("未知")
-        self.path = MyLabel("无")
-        self.format = MyLabel("无")
-        self.tags = QLabel("无")
-        self.booklists = QLabel("无")
-        self.bookPath = None
-        temp = QWidget()
-        temp.setFont(QFont("", 14))
-        temp.setLayout(self.form)
-        self.scrollarea.setWidget(temp)
+    def setTSize(self, TSize):
+        self.TSize = TSize
+
+    def getSize(self):
+        if self.TSize == '大':
+            return 14
+        elif self.TSize == '中':
+            return 13
+        else:
+            return 12
 
     def updateView(self, book: Book):
         if book.cover_path:
@@ -430,7 +501,7 @@ class MyList(QVBoxLayout):
         else:
             self.booklists.setText("无")
         temp = QWidget()
-        temp.setFont(QFont("", 14))
+        temp.setFont(QFont("", self.getSize()))
         temp.setLayout(self.form)
         self.scrollarea.setWidget(temp)
 
@@ -541,6 +612,7 @@ class MySearch(QToolBar):
         self.inputLine.setText(action.text())
 
     def changeAttr(self, attr):
+        self.searchBy.setCurrentText(attr)
         self.searchAttr = attr
         model = QStringListModel()
         if attr == '按书名':
@@ -564,6 +636,7 @@ class MySearch(QToolBar):
         self.inputCompleter.setModel(model)
 
     def changeAttrMode(self, attrMode):
+        self.searchMode.setCurrentText(attrMode)
         self.searchAttrMode = attrMode
         if attrMode == '准确匹配':
             self.inputCompleter.setFilterMode(Qt.MatchExactly)
