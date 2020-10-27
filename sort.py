@@ -20,7 +20,7 @@ def Merge_sort(ls):
         while j <= right:
             temp.append(arr[j])
             j += 1
-        for i in range(left, right+1):    #  !注意这里，不能直接arr=temp,他俩大小都不一定一样
+        for i in range(left, right+1):     
             arr[i] = temp[i-left]
     #递归调用归并排序
     def mSort(arr, left, right):
