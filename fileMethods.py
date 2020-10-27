@@ -16,10 +16,10 @@ import mdx_math
 
 def getTitle(doc):
     if doc.metadata['title']:
-        return doc.metadata['title'].replace(' ', '_')
+        return doc.metadata['title']  # .replace(' ', '_')
     else:
         name = doc.name.split('/')[-1][:-4]
-        return name.replace(' ', '_')
+        return name  # .replace(' ', '_')
 
 
 def getAuthors(doc):

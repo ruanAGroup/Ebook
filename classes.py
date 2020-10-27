@@ -38,6 +38,9 @@ class Book:
         data = self.getMetadata()
         data['author'] = strListToString(self.authors)
         data['title'] = self.name
+        doc = fitz.open(self.file_path)
+        doc.setMetadata(data)
+        doc.save(doc.name, incremental=True, encryption=fitz.PDF_ENCRYPT_KEEP)
 
     def getToC(self):
         data = self.getMetadata()

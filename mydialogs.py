@@ -109,6 +109,7 @@ class EditDataDialog(QDialog):
             self.book.rating = 0
         self.book.tags = parseStrListString(self.tagsInput.text())
         self.book.setBookLists(self.db, parseStrListString(self.booklistInput.text()))
+        self.book.setMetadata()
         self.book.updateDB(self.db)
         self.changeSignal.emit(self.book.ID)
         self.close()

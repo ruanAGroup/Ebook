@@ -106,7 +106,6 @@ class MyDb:
         self.connect()
         ret = self.cursor.execute('select * from %s' % self.book_table)
         rows = parseRetBookRows(ret)
-        # print("Ok")
         self.close()
         return rows
 

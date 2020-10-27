@@ -24,6 +24,8 @@ class BookManager(QMainWindow):
         if not os.path.exists('books'):
             os.mkdir('books')
         self.bookShelfPath = os.path.join(self.mainExePath, "books")
+        self.pdfReaderName = 'main'
+        self.editorName = 'editor'
 
         self.searchLine = MySearch(self.db)
         self.setSearch()
@@ -75,10 +77,8 @@ class BookManager(QMainWindow):
 
         QToolTip.setFont(QFont("", 14))
         self.setWindowTitle("图书管理系统")
-        desktop = QApplication.desktop()
-        rect = desktop.availableGeometry()
         self.setWindowIcon(QIcon('img/icon-2.png'))
-        self.setGeometry(rect)
+        self.showMaximized()
         self.show()
 
     def generateBookView(self):
@@ -94,8 +94,10 @@ class BookManager(QMainWindow):
         self.toolbar.editbook.triggered.connect(self.editBook)
         self.toolbar.sortBtn.clicked.connect(self.sortBooks)
         # self.toolbar.highSort.triggered.connect(self.HighSort)
-        self.toolbar.readbook.triggered.connect(self.readBook)
-        # self.toolbar.convertbook.triggered.connect(self.convertBook)
+        self.toolbar.readbook.clicked.connect(self.readBook)
+        self.toolbar.readInDefault.triggered.connect(self.readBook)
+        self.toolbar.readInOur.triggered.connect(self.readBookInOur)
+        self.toolbar.openEditor.triggered.connect(self.openEditor)
         self.toolbar.outAsTxt.triggered.connect(self.outAsTxt)
         self.toolbar.outAsDocx.triggered.connect(self.outAsDocx)
         self.toolbar.outAsHtml.triggered.connect(self.outAsHtml)
@@ -151,8 +153,6 @@ class BookManager(QMainWindow):
             os.chdir(self.mainExePath)
             self.booksView.updateView(self.curShowBooks)
             self.updateTreeView()
-            # time.sleep(1)
-            # print("Hi")
 
     def updateInfo(self, ID):
         book = self.db.getBookByID(ID)
@@ -263,6 +263,24 @@ class BookManager(QMainWindow):
             book = self.getCurrentBook()
             os.startfile(book.file_path)
 
+    def readBookInOur(self):
+        if self.booksView.lastActive:
+            book = self.getCurrentBook()
+            try:
+                os.chdir('reader')
+                os.system('{} {}'.format(self.pdfReaderName, book.file_path))
+                os.chdir('..')
+            except Exception:
+                print('fail to open')
+
+    def openEditor(self):
+        try:
+            os.chdir('editor')
+            os.system('{}'.format(self.editorName))
+            os.chdir('..')
+        except Exception:
+            pass
+
     def outAsTxt(self):
         if self.booksView.lastActive:
             saveFileName, _ = QFileDialog.getSaveFileName(self, "保存文件", ".", "txt file(*.txt)")
@@ -300,16 +318,20 @@ class BookManager(QMainWindow):
 
     def deleteBook(self):
         if self.booksView.lastActive:
-            book = self.getCurrentBook()
-            book.delete(self.db)
-            self.updateTreeView()
-            self.curShowBooks = self.db.getAllBooks()
-            self.booksView.updateView(self.curShowBooks)
-            tempbook = Book()
-            self.infoView.updateView(tempbook)
-            # os.chdir(self.mainExePath)
-            # self.infoView.setDefault()
-            # self.booksView.lastActive = None
+            box = QMessageBox(QMessageBox.Question, "注意", "您确定要从库中移除此文件吗？")
+            yes = box.addButton("确定", QMessageBox.YesRole)
+            no = box.addButton("取消", QMessageBox.NoRole)
+            box.exec_()
+            if box.clickedButton() == no:
+                return
+            elif box.clickedButton() == yes:
+                book = self.getCurrentBook()
+                book.delete(self.db)
+                self.updateTreeView()
+                self.curShowBooks = self.db.getAllBooks()
+                self.booksView.updateView(self.curShowBooks)
+                tempbook = Book()
+                self.infoView.updateView(tempbook)
 
     def updateBySearch(self, books):
         self.curShowBooks = books
@@ -418,5 +440,3 @@ class BookManager(QMainWindow):
     def setSearch(self):
         self.searchLine.changeAttr(self.setting['searchAttr'])
         self.searchLine.changeAttrMode(self.setting['searchMode'])
-
-

@@ -26,7 +26,7 @@ class MyToolBar(QToolBar):
         self.addbook = QAction(QIcon('img/add-2.png'), "添加书籍", self)
         self.inbook = QAction(QIcon('img/import-6.png'), "导入文件", self)
         self.editbook = QAction(QIcon('img/edit-5.png'), "编辑元数据", self)
-        self.readbook = QAction(QIcon('img/read-2.png'), "阅读书籍", self)
+
         self.deletebook = QAction(QIcon('img/delete-4.png'), "移除书籍", self)
         self.booklist = QAction(QIcon('img/booklist-2.png'), "创建书单", self)
         self.bookshelf = QAction(QIcon('img/bookshelf.png'), "打开书库", self)
@@ -58,6 +58,20 @@ class MyToolBar(QToolBar):
         self.sortBtn.setIcon(QIcon('img/sortUp-2.png'))
         self.sortBtn.setMenu(self.sortMenu)
         self.sortBtn.setPopupMode(QToolButton.MenuButtonPopup)
+
+        self.readInDefault = QAction("在默认pdf阅读器中打开", self)
+        self.readInOur = QAction("在我们的简易阅读器中打开", self)
+        self.openEditor = QAction("打开我们的简易编辑器", self)
+
+        self.readMenu = QMenu()
+        self.readMenu.setFont(QFont("", 14))
+        self.readMenu.addActions([self.readInDefault, self.readInOur, self.openEditor])
+        self.readbook = QToolButton()
+        self.readbook.setText("阅读书籍")
+        self.readbook.setIcon(QIcon('img/read-2.png'))
+        self.readbook.setMenu(self.readMenu)
+        self.readbook.setPopupMode(QToolButton.MenuButtonPopup)
+        self.readbook.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
 
         self.outAsHtml = QAction("导出为HTML", self)
         self.outAsTxt = QAction("导出为TXT", self)
@@ -102,7 +116,7 @@ class MyToolBar(QToolBar):
         self.addActions([self.editbook])
         self.addWidget(self.sortBtn)
         self.addSeparator()
-        self.addActions([self.readbook])
+        self.addWidget(self.readbook)
         self.addWidget(self.outBtn)
         self.addActions([self.deletebook])
         self.addSeparator()
@@ -385,7 +399,7 @@ class MyGrid(QGridLayout):
             tempLabel.setPixmap(QPixmap(book.cover_path).scaled(self.itemWidth, self.itemHeight))
             tempLabel.setScaledContents(True)
             if book.name:
-                tempLabel.setToolTip(book.name)
+                tempLabel.setToolTip("书名: " + book.name + '\n' + "作者: " + strListToString(book.authors))
             tempLabel.clicked.connect(self.onItemClicked)
             self.dict[tempLabel] = book.ID
             self.addWidget(tempLabel, *point)
