@@ -7,24 +7,17 @@
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="添加生成封面的example函数">
-      <change afterPath="$PROJECT_DIR$/books/rs_1/Python核心编程.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/rs_1/cover.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/SIMSUN.TTC" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/华文中宋.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/华文细黑.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/微软简行楷.TTF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/方正咆哮体.TTF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/方正喵呜体.TTF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/info.db" afterDir="false" />
+    <list default="true" id="b663d1a7-34d0-4f85-acb7-e2d1483bae83" name="默认的" comment="合并部分生成图片功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mydialogs.py" beforeDir="false" afterPath="$PROJECT_DIR$/mydialogs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/share.py" beforeDir="false" afterPath="$PROJECT_DIR$/share.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/templates/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +221,8 @@
       <workItem from="1603606029111" duration="1613000" />
       <workItem from="1603707658358" duration="6167000" />
       <workItem from="1603768582248" duration="29998000" />
-      <workItem from="1603884532109" duration="3981000" />
+      <workItem from="1603884532109" duration="4539000" />
+      <workItem from="1603889085888" duration="490000" />
     </task>
     <task id="LOCAL-00001" summary="try">
       <created>1599913602844</created>
@@ -412,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603816633600</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="合并部分生成图片功能">
+      <created>1603888545789</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1603888545789</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,7 +434,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -464,7 +477,8 @@
     <MESSAGE value="编辑元数据之后将修改原文件的元数据，添加tooltip信息。增加在主程序中打开简易阅读器和编辑器的逻辑" />
     <MESSAGE value="增加修改封面功能，完成分享图片的大致逻辑，只差生成图片功能的完成" />
     <MESSAGE value="添加生成封面的example函数" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加生成封面的example函数" />
+    <MESSAGE value="合并部分生成图片功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="合并部分生成图片功能" />
   </component>
   <component name="WindowStateProjectService">
     <state x="109" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600414011644">
@@ -495,38 +509,38 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="723" y="102" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1603718470853" />
-    <state width="1237" height="245" key="GridCell.Tab.0.bottom" timestamp="1603888478606">
+    <state width="1237" height="245" key="GridCell.Tab.0.bottom" timestamp="1603889076744">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="245" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603888478606" />
-    <state width="1237" height="245" key="GridCell.Tab.0.center" timestamp="1603888478605">
+    <state width="1237" height="245" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603889076744" />
+    <state width="1237" height="245" key="GridCell.Tab.0.center" timestamp="1603889076744">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="245" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1603888478605" />
-    <state width="1237" height="245" key="GridCell.Tab.0.left" timestamp="1603888478605">
+    <state width="1237" height="245" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1603889076744" />
+    <state width="1237" height="245" key="GridCell.Tab.0.left" timestamp="1603889076743">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="245" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1603888478605" />
-    <state width="1237" height="245" key="GridCell.Tab.0.right" timestamp="1603888478605">
+    <state width="1237" height="245" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1603889076743" />
+    <state width="1237" height="245" key="GridCell.Tab.0.right" timestamp="1603889076744">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="245" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1603888478605" />
-    <state width="1237" height="245" key="GridCell.Tab.1.bottom" timestamp="1603888478606">
+    <state width="1237" height="245" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1603889076744" />
+    <state width="1237" height="245" key="GridCell.Tab.1.bottom" timestamp="1603889076744">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="245" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603888478606" />
-    <state width="1237" height="245" key="GridCell.Tab.1.center" timestamp="1603888478606">
+    <state width="1237" height="245" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603889076744" />
+    <state width="1237" height="245" key="GridCell.Tab.1.center" timestamp="1603889076744">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="245" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1603888478606" />
-    <state width="1237" height="245" key="GridCell.Tab.1.left" timestamp="1603888478606">
+    <state width="1237" height="245" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1603889076744" />
+    <state width="1237" height="245" key="GridCell.Tab.1.left" timestamp="1603889076744">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="245" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1603888478606" />
-    <state width="1237" height="245" key="GridCell.Tab.1.right" timestamp="1603888478606">
+    <state width="1237" height="245" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1603889076744" />
+    <state width="1237" height="245" key="GridCell.Tab.1.right" timestamp="1603889076744">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="245" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1603888478606" />
+    <state width="1237" height="245" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1603889076744" />
     <state x="121" y="51" key="MergeDialog" timestamp="1603707699380">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -539,18 +553,18 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1603606515535" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1603816638175">
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1603888550819">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1603816638175" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1603888550819" />
     <state x="240" y="46" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1603805018545">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="240" y="46" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1280.680@0.0.1280.680" timestamp="1603805018545" />
-    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603768655061">
+    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603889098458">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1603768655061" />
+    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1603889098458" />
     <state x="484" y="125" key="refactoring.ChangeSignatureDialog" timestamp="1603778150686">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
