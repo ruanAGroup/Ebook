@@ -9,7 +9,7 @@ from classes import Book
 from mydatabase import MyDb
 from mythreads import convertThread
 from fileMethods import *
-from share import example
+from share import text2picture
 
 
 class MyComboBox(QComboBox):
@@ -409,7 +409,7 @@ class changeCoverDialog(QDialog):
             self.coverLabel.setPixmap(QPixmap(filename).scaled(365, 458))
 
     def onGenerateCover(self):
-        img = example()
+        img = text2picture(self.book)
         self.coverLabel.setPixmap(QPixmap().fromImage(img).scaled(365, 458))
 
     def onOK(self):
@@ -429,7 +429,7 @@ class shareByPicDialog(QDialog):
         self.picLabel = QLabel()
         self.book = book
         # 下面一行为测试代码
-        self.picLabel.setPixmap(QPixmap(self.book.cover_path).scaled(365, 458))
+        self.generatePic()
 
         self.refresh = QPushButton("刷新")
         self.copyBtn = QPushButton("复制")
@@ -454,7 +454,7 @@ class shareByPicDialog(QDialog):
         self.copySignal.emit()
 
     def generatePic(self):
-        img = example()
+        img = text2picture(self.book)
         self.picLabel.setPixmap(QPixmap().fromImage(img).scaled(365, 458))
 
     def onCancle(self):

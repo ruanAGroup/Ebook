@@ -203,6 +203,7 @@ class BookManager(QMainWindow):
 
     def editBook(self):
         if not self.booksView.lastActive:
+            self.noteChoseFile()
             return
         book = self.getCurrentBook()
         if book:
@@ -285,6 +286,8 @@ class BookManager(QMainWindow):
                 os.chdir('..')
             except Exception:
                 print('fail to open')
+        else:
+            self.noteChoseFile()
 
     def openEditor(self):
         try:
@@ -303,6 +306,8 @@ class BookManager(QMainWindow):
                 t.finishSignal.connect(lambda: self.onFinishOut(saveFileName))
                 t.start()
                 time.sleep(1)
+        else:
+            self.noteChoseFile()
 
     def outAsHtml(self):
         if self.booksView.lastActive:
@@ -313,6 +318,8 @@ class BookManager(QMainWindow):
                 t.finishSignal.connect(lambda: self.onFinishOut(saveFileName))
                 t.start()
                 time.sleep(1)
+        else:
+            self.noteChoseFile()
 
     def outAsDocx(self):
         if self.booksView.lastActive:
@@ -323,6 +330,8 @@ class BookManager(QMainWindow):
                 t.finishSignal.connect(lambda: self.onFinishOut(saveFileName))
                 t.start()
                 time.sleep(1)
+        else:
+            self.noteChoseFile()
 
     def onFinishOut(self, savefileName):
         ret = QMessageBox.question(self, '提示', "转换成功，是否打开文件", QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -345,6 +354,8 @@ class BookManager(QMainWindow):
                 self.booksView.updateView(self.curShowBooks)
                 tempbook = Book()
                 self.infoView.updateView(tempbook)
+        else:
+            self.noteChoseFile()
 
     def updateBySearch(self, books):
         self.curShowBooks = books
@@ -365,6 +376,8 @@ class BookManager(QMainWindow):
         self.updateTreeView()
         if self.booksView.lastActive:
             self.updateInfo(self.booksView.dict[self.booksView.lastActive])
+        else:
+            self.noteChoseFile()
         self.searchLine.changeAttr(self.searchLine.searchAttr)
 
     def openBookShelf(self):
@@ -385,7 +398,7 @@ class BookManager(QMainWindow):
             allmails = self.db.getAllKindleMail()
             self.toolbar.updateKindleEmail(allmails)
         if not self.booksView.lastActive:
-            QMessageBox.about(self, "提醒", "请先选中一本书")
+            self.noteChoseFile()
             return
         book = self.getCurrentBook()
         t = EmailThread(email_to, (book.file_path, mail))
@@ -405,6 +418,8 @@ class BookManager(QMainWindow):
             copyFile(book.file_path)
             QMessageBox.about(self, "提示", "文件已复制到剪贴板")
             CtrlAltZ()
+        else:
+            self.noteChoseFile()
 
     def toQQByPic(self):
         if self.booksView.lastActive:
@@ -412,6 +427,11 @@ class BookManager(QMainWindow):
             dig = shareByPicDialog(book, self)
             dig.copySignal.connect(self.qqPicCopied)
             dig.show()
+        else:
+            self.noteChoseFile()
+
+    def noteChoseFile(self):
+        QMessageBox.about(self, "提示", "请先选择一本书")
 
     def qqPicCopied(self):
         CtrlAltZ()
