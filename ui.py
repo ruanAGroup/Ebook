@@ -422,19 +422,12 @@ class BookManager(QMainWindow):
             self.noteChoseFile()
 
     def toQQByPic(self):
-        if self.booksView.lastActive:
-            book = self.getCurrentBook()
-            dig = shareByPicDialog(book, self)
-            dig.copySignal.connect(self.qqPicCopied)
-            dig.show()
-        else:
-            self.noteChoseFile()
+        setClipText('https://github.com/ruanAGroup/E-bookLibrary')
+        QMessageBox.about(self, "提示", "链接已复制到剪贴板")
+        CtrlAltZ()
 
     def noteChoseFile(self):
         QMessageBox.about(self, "提示", "请先选择一本书")
-
-    def qqPicCopied(self):
-        CtrlAltZ()
 
     def toWeChatByFile(self):
         if self.booksView.lastActive:
@@ -444,13 +437,8 @@ class BookManager(QMainWindow):
             CtrlAltW()
 
     def toWeChatByPic(self):
-        if self.booksView.lastActive:
-            book = self.getCurrentBook()
-            dig = shareByPicDialog(book, self)
-            dig.copySignal.connect(self.wechatPicCopied)
-            dig.show()
-
-    def wechatPicCopied(self):
+        setClipText('https://github.com/ruanAGroup/E-bookLibrary')
+        QMessageBox.about(self, "提示", "链接已复制到剪贴板")
         CtrlAltW()
 
     def giveusStar(self):

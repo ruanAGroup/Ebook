@@ -9,7 +9,7 @@ from classes import Book
 from mydatabase import MyDb
 from mythreads import convertThread
 from fileMethods import *
-from share import text2picture
+from share import getCover
 
 
 class MyComboBox(QComboBox):
@@ -409,53 +409,13 @@ class changeCoverDialog(QDialog):
             self.coverLabel.setPixmap(QPixmap(filename).scaled(365, 458))
 
     def onGenerateCover(self):
-        img = text2picture(self.book)
+        img = getCover(self.book)
         self.coverLabel.setPixmap(QPixmap().fromImage(img).scaled(365, 458))
 
     def onOK(self):
         pic = self.coverLabel.pixmap()
         self.coverChangeSignal.emit(pic)
         self.close()
-
-    def onCancle(self):
-        self.close()
-
-
-class shareByPicDialog(QDialog):
-    copySignal = pyqtSignal()
-
-    def __init__(self, book, parent=None):
-        super(shareByPicDialog, self).__init__(parent)
-        self.picLabel = QLabel()
-        self.book = book
-        # 下面一行为测试代码
-        self.generatePic()
-
-        self.refresh = QPushButton("刷新")
-        self.copyBtn = QPushButton("复制")
-        self.cancleBtn = QPushButton("返回")
-        self.refresh.clicked.connect(self.generatePic)
-        self.copyBtn.clicked.connect(self.copyPic)
-        self.cancleBtn.clicked.connect(self.onCancle)
-        vbox = QVBoxLayout()
-        hbox = QHBoxLayout()
-        hbox.addWidget(self.copyBtn)
-        hbox.addWidget(self.cancleBtn)
-        tempWidget = QWidget()
-        tempWidget.setLayout(hbox)
-        vbox.addWidget(self.picLabel)
-        vbox.addWidget(self.refresh)
-        vbox.addWidget(tempWidget)
-        self.setLayout(vbox)
-
-    def copyPic(self):
-        pic = self.picLabel.pixmap()
-        setClipPic(pic)
-        self.copySignal.emit()
-
-    def generatePic(self):
-        img = text2picture(self.book)
-        self.picLabel.setPixmap(QPixmap().fromImage(img).scaled(365, 458))
 
     def onCancle(self):
         self.close()
